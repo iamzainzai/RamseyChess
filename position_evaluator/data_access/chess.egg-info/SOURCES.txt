@@ -1,6 +1,0 @@
-setup.cfg
-setup.py
-data_access/chess.egg-info/PKG-INFO
-data_access/chess.egg-info/SOURCES.txt
-data_access/chess.egg-info/dependency_links.txt
-data_access/chess.egg-info/top_level.txt
