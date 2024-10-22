@@ -1,0 +1,43 @@
+services:
+  - type: pserv
+    name: mongodb
+    env: docker
+    plan: standard
+    docker:
+      image: mongo:5.0  # Updated MongoDB image version
+      command: ["mongod", "--bind_ip", "0.0.0.0", "--port", "27017"]
+    healthCheckPath: /  # Render handles health checks based on the service itself
+    envVars:
+      - key: MONGO_INITDB_ROOT_USERNAME
+        value: root
+      - key: MONGO_INITDB_ROOT_PASSWORD
+        value: example
+    mounts:
+      - type: volume
+        path: /data/db  # MongoDB data directory
+        name: mongodb_volume
+    ports:
+      - number: 27018
+        protocol: tcp
+
+  - type: web
+    name: ramsey-api
+    env: docker
+    plan: standard
+    docker:
+      buildContext: ./api  # Adjust the path to where your Dockerfile is located
+      dockerfilePath: Dockerfile
+    envVars:
+      - key: FLASK_APP
+        value: server.py
+      - key: FLASK_RUN_HOST
+        value: 0.0.0.0
+      - key: PYTHONPATH
+        value: /app
+      - key: RAMSEY_API_ENV
+        sync: true
+    dependsOn:
+      - name: mongodb
+    ports:
+      - number: ${RAMSEY_API_PORT}
+        protocol: tcp
