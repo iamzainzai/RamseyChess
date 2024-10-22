@@ -13,6 +13,7 @@ export class IframepageComponent {
   isWhiteBoard: boolean = false;
   lightTileColor: string = '#EEEED2';
   darkTileColor: string = '#769656';
+  hideControls: boolean = true;
 
   @Input() onGameEnd!: () => void;
 
@@ -23,6 +24,7 @@ export class IframepageComponent {
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.isWhiteBoard = params['isWhite'] ?? false;
+      this.hideControls = params['hideControls'] === 'true';
     });
 
     window.addEventListener('message', (event) => {

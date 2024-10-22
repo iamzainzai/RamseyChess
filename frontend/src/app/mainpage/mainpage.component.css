@@ -12,6 +12,8 @@
 .boards-container {
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
   padding: 3rem;
 }
 
@@ -50,7 +52,9 @@
   background-color: #45a049;
 }
 
-
+.test {
+  margin-bottom: 100px;
+}
 
 
 .toast__container {
