@@ -1,0 +1,69 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Initially hidden off-screen */
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  transition: all 0.3s ease;
+  padding: 20px;
+  z-index: 1000;
+
+  &.open {
+    left: 0; /* Slide in when open */
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    float: right;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin: 15px 0;
+
+      a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #f0f0f0;
+        }
+      }
+    }
+  }
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 2000; /* Ensure it stays above the sidebar */
+  padding: 10px;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 40%; /* Make the sidebar narrower on mobile */
+    left: -70%; /* Initially hidden off-screen */
+    &.open {
+      left: 0; /* Slide in when open */
+    }
+  }
+}

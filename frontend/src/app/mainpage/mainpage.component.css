@@ -3,12 +3,6 @@
   flex-direction: column;
 }
 
-.notifications-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .boards-container {
   display: flex;
   justify-content: space-around;
@@ -17,23 +11,10 @@
   padding: 3rem;
 }
 
-.game-ended-notification {
-  background-color: red;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  text-align: center;
-}
-
-.game-ended-notification:hover {
-  background-color: #ff0000;
-}
 
 .new-game-button {
-  background-color: #4CAF50;
-  color: white;
+  background-color: #8b4513; /* Dark brown color to match chessboard */
+  color: #ffffff; /* White text for better contrast */
   padding: 10px 20px;
   font-size: 16px;
   border: none;
@@ -49,7 +30,7 @@
 }
 
 .new-game-button:hover {
-  background-color: #45a049;
+  background-color: #a0522d; /* Slightly lighter brown for hover effect */
 }
 
 .boards-container {
@@ -61,97 +42,29 @@
   flex-wrap: wrap; /* Allow items to wrap for smaller screens */
 }
 
+/* Add media queries for different screen sizes to make the component more responsive */
+@media (max-width: 768px) {
+  .boards-container {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    padding: 1rem;
+    min-width: 350px;
+  }
 
-
-.toast__container {
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.toast__cell{
-  display:inline-block;
-}
-
-.add-margin{
-  margin-top:20px;
-}
-
-.toast__svg{
-  fill:#fff;
-}
-
-.toast {
-  text-align:left;
-    padding: 21px 0;
-    background-color:#fff;
-    border-radius:4px;
-    width: 400px;
-    max-width: 500px;
-    top: 0px;
-    position:relative;
-    box-shadow: 1px 7px 14px -5px rgba(0,0,0,0.2);
-}
-
-
-.toast:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-  border-top-left-radius:4px;
-  border-bottom-left-radius: 4px;
-
-}
-
-.toast__icon{
-  position:absolute;
-  top:50%;
-  left:22px;
-  transform:translateY(-50%);
-  width:14px;
-  height:14px;
-  padding: 7px;
-  border-radius:50%;
-  display:inline-block;
-}
-
-.toast__type {
-  color: #3e3e3e;
-  font-weight: 700;
-  margin-top: 0;
-  margin-bottom: 8px;
-}
-
-.toast__message {
+  .new-game-button {
     font-size: 14px;
-    margin-top: 0;
-  margin-bottom: 0;
-    color: #878787;
+    padding: 8px 16px;
+  }
 }
 
-.toast__content{
-  padding-left:70px;
-  padding-right:60px;
+@media (max-width: 480px) {
+  .boards-container {
+    padding: 0.5rem;
+  }
+
+  .new-game-button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
 }
 
-.toast__close {
-    position: absolute;
-    right: 22px;
-    top: 50%;
-    width: 14px;
-    cursor:pointer;
-    height: 14px;
-  fill:#878787;
-    transform: translateY(-50%);
-}
-
-.toast--green .toast__icon{
-  background-color:#2BDE3F;
-}
-
-.toast--green:before{
-  background-color:#2BDE3F;
-}
 

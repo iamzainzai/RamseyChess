@@ -11,14 +11,17 @@ export class MainpageComponent implements AfterViewInit {
   @ViewChild('chessBoard') chessBoard!: NgxChessBoardComponent;
 
   gameFinished = false;
-
+  currentFen : string = ""
   constructor(private router: Router) {}
 
-  ngOnInit() { }
+  ngOnInit() {
+    
+  }
 
   ngAfterViewInit() {
     // Now chessBoard is available, and we can call its methods safely.
     this.chessBoard.reset();
+    this.currentFen = this.chessBoard.getFEN()
   }
 
   onGameEnd() {
@@ -27,5 +30,11 @@ export class MainpageComponent implements AfterViewInit {
 
   reset() {
     this.chessBoard.reset()
+  }
+  onMoveChange() {
+    const fen = this.chessBoard.getFEN();
+    this.currentFen = fen
+    console.log('Current FEN:', fen);
+    // You can perform other actions here, like updating a state or sending the FEN to a backend
   }
 }
