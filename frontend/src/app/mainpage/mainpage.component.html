@@ -5,12 +5,19 @@
   <div class="boards-container">
       <ngx-chess-board #chessBoard style="min-width: 350px;" (moveChange)="onMoveChange()" ></ngx-chess-board>
   </div>
+</div>
+
+<div class="parameter-wrapper">
   <div style="text-align: center;">
     <p>{{this.currentFen}}</p>
   </div>
   <div style="text-align: center;">
     <app-mat-eval></app-mat-eval>
   </div>
+  <div style="text-align: center;">
+    <app-mini-max></app-mini-max>
+  </div>
 </div>
+
 
 

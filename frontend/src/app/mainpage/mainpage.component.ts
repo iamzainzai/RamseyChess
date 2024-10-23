@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxChessBoardComponent } from 'ngx-chess-board';
 import { MatevalComponent } from '../mateval/mateval.component';
+import { MinimaxComponent } from '../minimax/minimax.component';
 
 @Component({
   selector: 'app-mainpage',

@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatevalComponent } from './mateval/mateval.component';
+import { MinimaxComponent } from './minimax/minimax.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainpageComponent,
     SidebarComponent,
-    MatevalComponent
+    MatevalComponent,
+    MinimaxComponent
   ],
   imports: [
     BrowserModule,

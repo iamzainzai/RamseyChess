@@ -1,0 +1,35 @@
+body {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif; /* Use Google Font with fallbacks */
+    padding: 20px; /* Add some padding for a nicer layout */
+  }
+  
+  .center-table {
+    margin: 0 auto; /* Centers the table horizontally */
+    border-spacing: 20px; /* Add space between cells */
+  }
+  
+  td {
+    vertical-align: middle; /* Align items vertically to the center */
+  }
+  
+  .form-group label {
+    font-size: 1em; /* Makes the text larger */
+  }
+  
+  .form-group input[type="checkbox"] {
+    transform: scale(2); /* Make the checkbox larger */
+    margin-right: 10px; /* Add space between checkbox and label text */
+  }
+  
+  .depth-group {
+    display: flex; /* Use flexbox to place label and input side by side */
+    align-items: center; /* Align label and input vertically centered */
+    gap: 10px; /* Add spacing between the label and the input */
+  }
+  
+  .form-group input[type="number"] {
+    padding: 10px; /* Adds padding to the input element */
+    font-size: 1em; /* Increase font size of the input element */
+    width: 80px; /* Set a fixed width for better alignment */
+  }
+  
