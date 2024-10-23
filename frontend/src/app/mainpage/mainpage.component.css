@@ -52,9 +52,15 @@
   background-color: #45a049;
 }
 
-.test {
-  margin-bottom: 100px;
+.boards-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f0f0f0;
+  flex-wrap: wrap; /* Allow items to wrap for smaller screens */
 }
+
 
 
 .toast__container {

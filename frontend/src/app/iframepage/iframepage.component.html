@@ -1,3 +1,11 @@
-<ngx-chess-board #board [size]=535 [darkDisabled]="isWhiteBoard" [lightDisabled]="!isWhiteBoard" (moveChange)="onMove()"
-  [lightTileColor]="lightTileColor" [darkTileColor]="darkTileColor">
-</ngx-chess-board>
+
+  <ngx-chess-board 
+    #board 
+    [size]="chessBoardSize" 
+    [darkDisabled]="isWhiteBoard" 
+    [lightDisabled]="!isWhiteBoard" 
+    (moveChange)="onMove()"
+    [lightTileColor]="lightTileColor" 
+    [darkTileColor]="darkTileColor">
+  </ngx-chess-board>
+
