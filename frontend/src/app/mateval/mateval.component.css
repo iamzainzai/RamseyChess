@@ -1,0 +1,43 @@
+table{
+    margin: 0 auto;
+}
+
+th, td {
+    width: 50%; /* Forces each column to take up half of the table width */
+    text-align: center;
+    vertical-align: top;
+  }
+
+  input[type="number"] {
+    width: 100%; /* Set consistent width for input fields */
+    max-width: 150px; /* Limit the maximum width to prevent it from getting too large */
+    box-sizing: border-box; /* Makes sure padding is included in the width */
+    padding: 8px; /* Adds padding inside input for better visual appearance */
+  }
+
+  .form-group {
+    display: flex; /* Use flexbox to align label and input */
+    justify-content: space-between; /* Spreads the label and input evenly */
+    align-items: center; /* Keeps both label and input aligned vertically */
+    gap: 10px; /* Adds spacing between label and input */
+  }
+
+  .submit-btn:hover {
+    background-color: #b0b0b0; /* Slightly darker gray for hover effect */
+  }
+
+  .submit-btn:active {
+    background-color: #a0a0a0; /* Darker shade when button is active/clicked */
+  }
+
+  .submit-btn {
+    background-color: #d3d3d3; /* Light gray, similar to a chessboard color */
+    color: #000; /* Black text for good contrast */
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    margin-top: 20px; /* Adds spacing above the button */
+    border-radius: 5px; /* Rounds the corners for a more modern look */
+  }

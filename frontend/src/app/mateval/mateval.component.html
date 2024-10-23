@@ -1,0 +1,99 @@
+<form (ngSubmit)="onSubmit()">
+    <table>
+      <thead>
+        <tr>
+          <th>Your Pieces</th>
+          <th>Opponent's Pieces</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label for="ownPawnValue">Pawns:</label>
+              <input type="number" id="ownPawnValue" [(ngModel)]="model.ownPieces.pawn" name="ownPawnValue" required (input)="validatePositiveFloat($event)" step="0.1" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="opponentPawnValue">Pawns:</label>
+              <input type="number" id="opponentPawnValue" [(ngModel)]="model.opponentPieces.pawn" name="opponentPawnValue" required (input)="validatePositiveFloat($event)" step="0.1" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label for="ownKnightValue">Knights:</label>
+              <input type="number" id="ownKnightValue" [(ngModel)]="model.ownPieces.knight" name="ownKnightValue" required (input)="validatePositiveFloat($event)" step="0.1" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="opponentKnightValue">Knights:</label>
+              <input type="number" id="opponentKnightValue" [(ngModel)]="model.opponentPieces.knight" name="opponentKnightValue" required (input)="validatePositiveFloat($event)" step="0.1" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label for="ownBishopValue">Bishops:</label>
+              <input type="number" id="ownBishopValue" [(ngModel)]="model.ownPieces.bishop" name="ownBishopValue" required (input)="validatePositiveFloat($event)" step="0.1" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="opponentBishopValue">Bishops:</label>
+              <input type="number" id="opponentBishopValue" [(ngModel)]="model.opponentPieces.bishop" name="opponentBishopValue" required (input)="validatePositiveFloat($event)" step="0.1" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label for="ownRookValue">Rooks:</label>
+              <input type="number" id="ownRookValue" [(ngModel)]="model.ownPieces.rook" name="ownRookValue" required (input)="validatePositiveFloat($event)" step="0.1" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="opponentRookValue">Rooks:</label>
+              <input type="number" id="opponentRookValue" [(ngModel)]="model.opponentPieces.rook" name="opponentRookValue" required (input)="validatePositiveFloat($event)" step="0.1" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label for="ownQueenValue">Queen:</label>
+              <input type="number" id="ownQueenValue" [(ngModel)]="model.ownPieces.queen" name="ownQueenValue" required (input)="validatePositiveFloat($event)" step="0.1" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="opponentQueenValue">Queen:</label>
+              <input type="number" id="opponentQueenValue" [(ngModel)]="model.opponentPieces.queen" name="opponentQueenValue" required (input)="validatePositiveFloat($event)" step="0.1" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label for="ownKingValue">King:</label>
+              <input type="number" id="ownKingValue" [(ngModel)]="model.ownPieces.king" name="ownKingValue" required (input)="validatePositiveFloat($event)" step="0.1" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="opponentKingValue">King:</label>
+              <input type="number" id="opponentKingValue" [(ngModel)]="model.opponentPieces.king" name="opponentKingValue" required (input)="validatePositiveFloat($event)" step="0.1" />
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <button type="submit" class="submit-btn">Evaluate</button>
+  </form>
+  

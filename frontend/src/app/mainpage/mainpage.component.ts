@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxChessBoardComponent } from 'ngx-chess-board';
+import { MatevalComponent } from '../mateval/mateval.component';
 
 @Component({
   selector: 'app-mainpage',
@@ -30,6 +31,7 @@ export class MainpageComponent implements AfterViewInit {
 
   reset() {
     this.chessBoard.reset()
+    this.currentFen = this.chessBoard.getFEN()
   }
   onMoveChange() {
     const fen = this.chessBoard.getFEN();
