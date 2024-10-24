@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, ExtraOptions } from '@angular/router';
-import { MainpageComponent } from './mainpage/mainpage.component';
-import { BlogComponent } from './blog/blog.component';
+import { MainpageComponent } from './sandbox-page/mainpage/mainpage.component';
+import { BlogComponent } from './blog-page/blog.component';
 
 const routerOptions: ExtraOptions = {
   anchorScrolling: 'enabled', 

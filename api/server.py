@@ -223,28 +223,20 @@ def submit_exec():
    req = request.get_json()
    eval_manager = req.get("model", None)
    fen = req.get("fen", None)
+   depth = req.get("depth", 1)
+   # Dont crash the server
+   depth = min(depth, 4)
 
    board = chess.Board(fen)
    
-   
-
-
    matEval = MaterialEvaluator(eval_manager=eval_manager,board=board)
-
-   #Temporal patch for minimax to work
-   if board.turn == chess.WHITE:
-    for piece , value in list(matEval.eval_manager["ownPieces"].items()):
-      eval_manager["ownPieces"][piece] = -value
-   if board.turn == chess.BLACK:
-    for piece , value in list(matEval.eval_manager["opponentPieces"].items()):
-      eval_manager["opponentPieces"][piece] = -value    
-
-   minimax = Minimax(evaluator=matEval, depth=3)
+   minimax = Minimax(evaluator=matEval, depth=depth)
    
    best_move = minimax.find_best_move(board)
    
    return jsonify({
-       "best_move": board.san(best_move),
+       "best_move" : best_move.uci(),
+       "best_move_readable": board.san(best_move),
        "material_score": matEval.calculate()
    })
 

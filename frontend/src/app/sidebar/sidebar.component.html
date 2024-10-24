@@ -1,9 +1,8 @@
-<div class="sidebar" [ngClass]="{ 'open': isOpen }">
-    <button class="close-btn" (click)="closeSidebar()">×</button>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </div>
+<div class="sidebar bg-dark p-4" [ngClass]="{ 'open': isOpen }">
+  <ul class="list-unstyled mt-4">
+    <li class="mb-3"><a href="#" class="text-white text-decoration-none p-2 d-block rounded">Home</a></li>
+    <li class="mb-3"><a href="#" class="text-white text-decoration-none p-2 d-block rounded">About</a></li>
+    <li class="mb-3"><a href="#" class="text-white text-decoration-none p-2 d-block rounded">Services</a></li>
+    <li class="mb-3"><a href="#" class="text-white text-decoration-none p-2 d-block rounded">Contact</a></li>
+  </ul>
+</div>

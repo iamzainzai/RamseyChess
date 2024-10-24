@@ -1,18 +1,11 @@
-<div class="my-container">
-  <ul>
-    <li><a [routerLink]="['/blog']">Blog</a></li>
-    <li><a [routerLink]="['/']">Sandbox</a></li>
-    <li><a [routerLink]="['/']">Play against AI</a></li>
-    <li><a [routerLink]="['/']">Create strategy</a></li>
-  </ul>
-</div>
+<app-navmenu></app-navmenu>
 
-<div class="game-wrapper">
+<div class="game-wrapper" style="margin-top: 85px;">
   <div class="container" style="margin-top: 10px;">
     <p>Sandbox Testing</p>
   </div>
   <div class="boards-container">
-      <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" [size]="this.boardSize"></ngx-chess-board>
+      <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" [size]="this.updateBoardSize()"></ngx-chess-board>
   </div>
   <button class="new-game-button reset-btn" (click)="reset()">
     Reset

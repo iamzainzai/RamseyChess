@@ -8,11 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { MainpageComponent } from './mainpage/mainpage.component';
+import { MainpageComponent } from './sandbox-page/mainpage/mainpage.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { MatevalComponent } from './mateval/mateval.component';
-import { MinimaxComponent } from './minimax/minimax.component';
-import { BlogComponent } from './blog/blog.component';
+import { MatevalComponent } from './sandbox-page/mateval/mateval.component';
+import { MinimaxComponent } from './sandbox-page/minimax/minimax.component';
+import { BlogComponent } from './blog-page/blog.component';
+import { NavmenuComponent } from './navmenu/navmenu.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BlogComponent } from './blog/blog.component';
     SidebarComponent,
     MatevalComponent,
     MinimaxComponent,
-    BlogComponent
+    BlogComponent,
+    NavmenuComponent
   ],
   imports: [
     HttpClientModule,

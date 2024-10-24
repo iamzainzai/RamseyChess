@@ -9,8 +9,8 @@ from bson.json_util import dumps
 class EvaluateMaterialDoc:
     _id           : ObjectId
     name          : str
-    ownPieces     : Dict[str, float]
-    opponentPieces: Dict[str, float]
+    whitePieces   : Dict[str, float]
+    blackPieces   : Dict[str, float]
     owner         : Optional[str] = None #UUID
 
 
@@ -34,15 +34,15 @@ class EvaluateMaterialManager():
     def getCurrent(self):
         return json.loads(dumps(self.current_doc))
 
-    def insertByName(self , name : str , ownPieces : Dict[str, float] , opponentPieces : Dict[str, float], owner = None) -> bool:
+    def insertByName(self , name : str , whitePieces : Dict[str, float] , blackPieces : Dict[str, float], owner = None) -> bool:
         existing_doc = self.docs.find_one({"name": name})
         if existing_doc:
             return False  
         new_doc = EvaluateMaterialDoc(
             _id            = ObjectId(),
             name           = name,
-            ownPieces      = ownPieces,
-            opponentPieces = opponentPieces
+            whitePieces    = whitePieces,
+            blackPieces = blackPieces
         )
         result = self.docs.insert_one(asdict(new_doc))
         return result.acknowledged
@@ -63,8 +63,15 @@ if __name__ == "__main__":
     "queen" : 9.0,
     "king"  : 20.0
     }
-
-    result = em.insertByName('default2', piece_value , piece_value)
+    piece_value2 = {
+    "pawn"  : -1.0,
+    "knight": -3.0,
+    "bishop": -3.0,
+    "rook"  : -5.0,
+    "queen" : -9.0,
+    "king"  : -20.0
+    }
+    result = em.insertByName('default2', piece_value , piece_value2)
     print(result)
     em.loadOne("default2")
     print(em.current_doc)

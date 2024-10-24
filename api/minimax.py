@@ -6,6 +6,7 @@ class Minimax:
         self.depth = depth
         self.debug = debug
        
+ 
 
     def minimax(self, board, depth, maximizing_player):
         self.evaluator.set_board(board)
@@ -90,20 +91,12 @@ if __name__ == "__main__":
     em.loadOne("default")
     eval_manager = em.getCurrent()
 
-    board = chess.Board("rnb1kbnr/pp1ppppp/2p5/q7/Q7/2P5/PP1PPPPP/RNB1KBNR b KQkq - 0 3")
+    board = chess.Board("rnb1k1nr/p1pp1pp1/p6p/2b1p1q1/4P3/PP1PB3/2P2PPP/RN1QK1NR b KQkq - 0 8")
 
     matEval = MaterialEvaluator(eval_manager=eval_manager,board=board)
 
-    if board.turn == chess.WHITE:
-        for piece , value in list(matEval.eval_manager["ownPieces"].items()):
-            eval_manager["ownPieces"][piece] = -value
-    if board.turn == chess.BLACK:
-        for piece , value in list(matEval.eval_manager["opponentPieces"].items()):
-            eval_manager["opponentPieces"][piece] = -value    
-
     print(matEval.eval_manager)
         
-
     minimax = Minimax(evaluator=matEval, depth=3)
     best_move = minimax.find_best_move(board)
     print(board.san(best_move))
