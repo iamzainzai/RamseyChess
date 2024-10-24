@@ -11,6 +11,7 @@ setup(
         "dataclasses; python_version<'3.7'",
         "pymongo",
         "flask",
+        'flask-cors',
         "chess",
         "flasgger"
     ],

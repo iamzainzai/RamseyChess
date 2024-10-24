@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 import chess
 from flasgger import Swagger
+from flask_cors import CORS
+
 
 from data_access.material_manager import EvaluateMaterialManager
 from data_access.danger_manager import EvaluateDangerManager
@@ -15,6 +17,7 @@ from minimax import Minimax
 
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 swagger = Swagger(app)
 
 @app.route('/gen_evaluate', methods=['POST'])
@@ -214,6 +217,36 @@ def material_eval_debug():
         ]
     
     return jsonify(response)
+
+@app.route('/submit_exec', methods=['POST'])
+def submit_exec():
+   req = request.get_json()
+   eval_manager = req.get("model", None)
+   fen = req.get("fen", None)
+
+   board = chess.Board(fen)
+   
+   
+
+
+   matEval = MaterialEvaluator(eval_manager=eval_manager,board=board)
+
+   #Temporal patch for minimax to work
+   if board.turn == chess.WHITE:
+    for piece , value in list(matEval.eval_manager["ownPieces"].items()):
+      eval_manager["ownPieces"][piece] = -value
+   if board.turn == chess.BLACK:
+    for piece , value in list(matEval.eval_manager["opponentPieces"].items()):
+      eval_manager["opponentPieces"][piece] = -value    
+
+   minimax = Minimax(evaluator=matEval, depth=3)
+   
+   best_move = minimax.find_best_move(board)
+   
+   return jsonify({
+       "best_move": board.san(best_move),
+       "material_score": matEval.calculate()
+   })
 
 if __name__ == '__main__':
   app.run(debug=True)

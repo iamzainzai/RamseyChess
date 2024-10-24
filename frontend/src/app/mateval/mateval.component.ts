@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { EvalService } from '../services/eval-service.service';
 
 interface ChessPieces {
   pawn  : number;
@@ -22,6 +24,7 @@ interface MatevalModel {
   styleUrls: ['./mateval.component.css']
 })
 export class MatevalComponent {
+  @Input() currentFen : string = "";
   model: MatevalModel = {
     name: 'default',
     ownPieces: {
@@ -42,6 +45,9 @@ export class MatevalComponent {
     },
     owner: null
   };
+  bestMove : string | null = null
+
+  constructor(private http: HttpClient, private eval_service : EvalService) {}
 
   validatePositiveFloat(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
@@ -54,4 +60,21 @@ export class MatevalComponent {
   onSubmit(): void {
     console.log('Form submitted:', this.model);
   }
+
+  pingFlask() {
+    this.eval_service.currentEvalModel = this.model;
+    this.eval_service.currentFen = this.currentFen;
+  
+    this.eval_service.sendExec().then((bestMove: string | null) => {
+      if (bestMove) {
+        this.bestMove = bestMove;
+        console.log('Best move:', this.bestMove);
+      } else {
+        console.log('No best move found.');
+      }
+    }).catch((error) => {
+      console.error('Error occurred:', error);
+    });
+  }
+
 }

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxChessBoardModule } from 'ngx-chess-board';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -11,6 +12,7 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatevalComponent } from './mateval/mateval.component';
 import { MinimaxComponent } from './minimax/minimax.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,11 @@ import { MinimaxComponent } from './minimax/minimax.component';
     MainpageComponent,
     SidebarComponent,
     MatevalComponent,
-    MinimaxComponent
+    MinimaxComponent,
+    BlogComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     NgxChessBoardModule.forRoot(),
