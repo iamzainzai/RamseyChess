@@ -38,7 +38,7 @@ services:
       context: ./frontend  # Adjust the path to where your Angular frontend Dockerfile is located
       dockerfile: Dockerfile
     container_name: frontend
-    expose:
+    ports:
       - "80:4200"  # Internal port used by the frontend service
     restart: always
     labels:
