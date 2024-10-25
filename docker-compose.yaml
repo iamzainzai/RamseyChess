@@ -8,9 +8,9 @@ services:
       - "--providers.docker=true"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
-      - "--entrypoints.websecure.http.tls=true"  # Enable TLS for the websecure entrypoint
-      - "--entrypoints.websecure.http.tls.certificates[0].cert=/certs/selfsigned.crt"  # Path to the cert
-      - "--entrypoints.websecure.http.tls.certificates[0].key=/certs/selfsigned.key"  # Path to the key
+      - "--entrypoints.websecure.http.tls=true"  # Enable TLS for websecure entrypoint
+      - "--entrypoints.websecure.http.tls.certificates[0].cert=/certs/selfsigned.crt"
+      - "--entrypoints.websecure.http.tls.certificates[0].key=/certs/selfsigned.key"
     ports:
       - "80:80"
       - "443:443"
