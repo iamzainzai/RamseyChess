@@ -10,11 +10,10 @@ export class MinimaxComponent implements OnInit {
   selected_depth : number = 1
   constructor(private eval_service : EvalService) {}
   ngOnInit(): void {
-    // Subscribe to the currentDepth$ observable
-    this.eval_service.currentDepth$.subscribe((depth: number | null) => {
-      if (depth !== null) {
-        this.selected_depth = depth;  // Update selected_depth when currentDepth$ changes
-      }
-    });
+    this.eval_service.updateDepth(this.selected_depth)
+  }
+  onDepthChange(newDepth: number): void {
+    this.selected_depth = newDepth;
+    this.eval_service.updateDepth(this.selected_depth);
   }
 }

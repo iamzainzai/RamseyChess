@@ -65,10 +65,14 @@ export class MatevalComponent {
   }
 
   pingFlask(): void {
+    if (this.isRequesting) {
+      return;
+    }
     // Update the service with the current model and FEN
     this.eval_service.updateEvalModel(this.model);
+    console.log("REQUESTING" + this.isRequesting)
     this.isRequesting = true;
-  
+    console.log("REQUESTING" + this.isRequesting)
     // Call the sendExec() method, which now just triggers the request, 
     // and handle the results via subscription to bestMove$ and bestMoveReadable$
     this.eval_service.sendExec()
@@ -76,16 +80,16 @@ export class MatevalComponent {
         console.error('Error occurred during request:', error);
         this.isRequesting = false;
       });
-  
+    
     // Subscribe to the bestMove$ observable
     this.eval_service.bestMoveReadable$.subscribe((bestMove: string | null) => {
       if (bestMove) {
         this.bestMove = bestMove;
         console.log('Best move:', this.bestMove);
+        this.isRequesting = false; // Stop requesting when a result is received
       } else {
         console.log('No best move found.');
-      }
-      this.isRequesting = false; // Stop requesting when a result is received
+      }     
     });
   }
 

@@ -30,7 +30,6 @@ export class EvalService {
   bestMoveReadable$: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   currentDepth$: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null);
 
-
 constructor(private http: HttpClient) {}
 
   // Method to update the currentEvalModel
@@ -41,6 +40,11 @@ constructor(private http: HttpClient) {}
   // Method to update the currentFen
   updateFen(newFen: string) {
     this.currentFen$.next(newFen);
+  }
+
+  updateDepth(newDepth : number)
+  {
+    this.currentDepth$.next(newDepth);
   }
 
   // Method to send execution request
@@ -55,7 +59,6 @@ constructor(private http: HttpClient) {}
         return;
       }  
       const payload = { model: currentModel, fen: currentFen, depth: moveDepth };
-      
       this.http.post('/api/submit_exec', payload).subscribe(
         (response: any) => {
           console.log('Response from server:', response);

@@ -1,17 +1,24 @@
-<div class="my-container bg-light" [ngClass]="{'fixed-top': !isSmallScreen}">
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <a [routerLink]="['/blog']" class="nav-link">Blog</a>
-      </li>
-      <li class="nav-item">
-        <a [routerLink]="['/']" class="nav-link">Sandbox</a>
-      </li>
-      <li class="nav-item">
-        <a [routerLink]="['/']" class="nav-link">Play against AI</a>
-      </li>
-      <li class="nav-item">
-        <a [routerLink]="['/']" class="nav-link">Create strategy</a>
-      </li>
-    </ul>
-  </div>
-  
+<div class="my-container d-flex justify-content-between align-items-center" [ngClass]="{'fixed-top': !isSmallScreen}">
+  <!-- Left side: Icon -->
+  <ul class="nav justify-content-center flex-grow-1 logo-container" style="flex-grow: 0 !important;">
+    <li class="nav-item">
+      <a [routerLink]="['/blog']" class="nav-link">Ramsey Chess</a>
+    </li>
+  </ul>
+
+  <!-- Center: Navigation Items -->
+  <ul class="nav justify-content-center flex-grow-1">
+    <li class="nav-item">
+      <a [routerLink]="['/blog']" class="nav-link">Blog</a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['/']" class="nav-link">Sandbox</a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['/play-ai']" class="nav-link">Play against AI</a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['/']" class="nav-link">Create strategy</a>
+    </li>
+  </ul>
+</div>

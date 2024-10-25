@@ -1,28 +1,30 @@
 <app-navmenu></app-navmenu>
 
-<div class="game-wrapper" style="margin-top: 85px;">
-  <div class="container" style="margin-top: 10px;">
-    <p>Sandbox Testing</p>
+<div class="container game-wrapper mt-5">
+  <div class="row" style="margin-top: 85px;">
+    <!-- Left side: Parameters, centered on small screens -->
+    <div class="col-12 col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+      <div style="text-align: center;">
+        <app-mat-eval [currentFen]="this.currentFen"></app-mat-eval>
+      </div>
+      <div style="text-align: center;">
+        <app-mini-max></app-mini-max>
+      </div>
+    </div>
+
+    <!-- Right side: Chessboard, only on right side on desktop screens -->
+    <div class="col-12 col-lg-6 order-1 order-lg-2 d-flex justify-content-center">
+      <div class="boards-container" style="max-width: 500px;">
+        <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" [size]="400"></ngx-chess-board>
+        <div class="text-center mt-3">
+          <button class="custom-button reset-btn" (click)="reset()">Reset</button>
+        </div>
+        <div style="text-align: center;">
+          <p>{{ this.currentFen }}</p>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="boards-container">
-      <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" [size]="this.updateBoardSize()"></ngx-chess-board>
-  </div>
-  <button class="new-game-button reset-btn" (click)="reset()">
-    Reset
-  </button>
+
+
 </div>
-
-<div class="parameter-wrapper mt-3">
-  <div style="text-align: center;">
-    <p>{{this.currentFen}}</p>
-  </div>
-  <div style="text-align: center;">
-    <app-mat-eval [currentFen]="this.currentFen"></app-mat-eval>
-  </div>
-  <div style="text-align: center;">
-    <app-mini-max></app-mini-max>
-  </div>
-</div>
-
-
-

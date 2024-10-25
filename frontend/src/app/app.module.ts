@@ -13,7 +13,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatevalComponent } from './sandbox-page/mateval/mateval.component';
 import { MinimaxComponent } from './sandbox-page/minimax/minimax.component';
 import { BlogComponent } from './blog-page/blog.component';
-import { NavmenuComponent } from './navmenu/navmenu.component';
+import { NavMenuComponent } from './navmenu/navmenu.component';
+import { PlayPageComponent } from './play-page/play-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NavmenuComponent } from './navmenu/navmenu.component';
     MatevalComponent,
     MinimaxComponent,
     BlogComponent,
-    NavmenuComponent
+    NavMenuComponent,
+    PlayPageComponent
   ],
   imports: [
     HttpClientModule,

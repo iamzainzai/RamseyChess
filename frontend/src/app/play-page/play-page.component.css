@@ -1,0 +1,9 @@
+.full-card
+{
+    min-width: 418px
+}
+.main-container
+{
+    height: auto;
+    min-height: 100vh;
+}

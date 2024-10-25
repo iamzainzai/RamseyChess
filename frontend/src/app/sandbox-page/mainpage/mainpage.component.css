@@ -1,6 +1,8 @@
 .game-wrapper {
   display: flex;
   flex-direction: column;
+  height: auto;
+  min-height: 100vh;
 }
 
 .boards-container {
@@ -9,6 +11,9 @@
   flex-direction: column;
   align-items: center;
   padding: 3rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06); /* Adds a subtle shadow */
+  background-color: white; /* Optional: Ensure the background color contrasts with the shadow */
 }
 
 .container
@@ -47,8 +52,9 @@
   justify-content: space-between;
   gap: 20px;
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: #282970;
   flex-wrap: wrap; /* Allow items to wrap for smaller screens */
+  height: fit-content;
 }
 
 /* Add media queries for different screen sizes to make the component more responsive */
@@ -80,4 +86,28 @@
 {
   margin: 0 auto;
   width: fit-content;
+}
+
+.custom-button {
+  background-color: #282a71; /* Dark blue background */
+  color: whitesmoke;         /* White text */
+  border-radius: 8px;        /* Rounded corners */
+  padding: 10px 20px;        /* Increase padding for better appearance */
+  border: 2px solid  #160555;/* Solid border similar to row gradient */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+  margin: auto 10px;
+  width: 100%
+}
+
+.custom-button:hover {
+  background-color: #160555; /* Slightly lighter blue on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
+}
+
+.custom-button:disabled {
+  background-color: #999999; /* Gray background when disabled */
+  border: 2px solid #999999; /* Gray border when disabled */
+  cursor: not-allowed;       /* Show not-allowed cursor when disabled */
+  box-shadow: none;          /* Remove shadow when disabled */
 }

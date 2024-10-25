@@ -1,7 +1,13 @@
 table{
     margin: 0 auto;
 }
-
+.row {
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+  padding: 10px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Soft shadow for lifting effect */
+  transition: box-shadow 0.3s ease; /* Smooth transition on hover */
+}
 th, td {
     width: 50%; /* Forces each column to take up half of the table width */
     text-align: center;
@@ -13,6 +19,7 @@ th, td {
     max-width: 150px; /* Limit the maximum width to prevent it from getting too large */
     box-sizing: border-box; /* Makes sure padding is included in the width */
     padding: 8px; /* Adds padding inside input for better visual appearance */
+    border-radius: 1px;
   }
 
   .form-group {
@@ -40,4 +47,28 @@ th, td {
     transition: background-color 0.3s ease; /* Smooth transition for hover effect */
     margin-top: 20px; /* Adds spacing above the button */
     border-radius: 5px; /* Rounds the corners for a more modern look */
+  }
+
+  .custom-button {
+    background-color: #282a71; /* Dark blue background */
+    color: whitesmoke;         /* White text */
+    border-radius: 8px;        /* Rounded corners */
+    padding: 10px 20px;        /* Increase padding for better appearance */
+    border: 2px solid  #160555;/* Solid border similar to row gradient */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    margin: auto 10px;
+    width: 100%
+  }
+  
+  .custom-button:hover {
+    background-color: #160555; /* Slightly lighter blue on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
+  }
+  
+  .custom-button:disabled {
+    background-color: #999999; /* Gray background when disabled */
+    border: 2px solid #999999; /* Gray border when disabled */
+    cursor: not-allowed;       /* Show not-allowed cursor when disabled */
+    box-shadow: none;          /* Remove shadow when disabled */
   }

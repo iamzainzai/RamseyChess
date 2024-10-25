@@ -5,7 +5,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
   templateUrl: './navmenu.component.html',
   styleUrls: ['./navmenu.component.css']
 })
-export class NavmenuComponent implements OnInit {
+export class NavMenuComponent implements OnInit {
   isSmallScreen: boolean = false;
 
   ngOnInit(): void {
