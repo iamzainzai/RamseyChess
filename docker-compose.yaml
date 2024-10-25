@@ -39,5 +39,5 @@ services:
       dockerfile: Dockerfile
     container_name: frontend
     ports:
-      - "80:4200"  # Map host port 4200 to container port 4200
+      - "443:4200"  # Map host port 4200 to container port 4200
     restart: always
