@@ -1,6 +1,23 @@
 version: '3.8'
 
 services:
+  traefik:
+    image: traefik:v2.0
+    command:
+      - "--api.insecure=true"  # Optional: enable Traefik dashboard
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=your-email@example.com"  # Change to your email
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "traefik-certificates:/letsencrypt"
+
   mongodb:
     image: mongo:5.0  # Updated MongoDB image version
     container_name: mongodb
@@ -25,8 +42,8 @@ services:
     ports:
       - "3000:5000"
     depends_on:
-        mongodb:
-          condition: service_healthy
+      mongodb:
+        condition: service_healthy
     restart: always
     environment:
       - FLASK_APP=server.py
@@ -38,6 +55,14 @@ services:
       context: ./frontend  # Adjust the path to where your Angular frontend Dockerfile is located
       dockerfile: Dockerfile
     container_name: frontend
-    ports:
-      - "443:4200"  # Map host port 4200 to container port 4200
+    expose:
+      - "4200"  # Internal port used by the frontend service
     restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`your-domain.com`)"  # Change to your domain
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=myresolver"
+
+volumes:
+  traefik-certificates:
