@@ -8,15 +8,14 @@ services:
       - "--providers.docker=true"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=your-email@example.com"  # Change to your email
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      - "--entrypoints.websecure.http.tls.certificates[0].cert=/certs/selfsigned.crt"
+      - "--entrypoints.websecure.http.tls.certificates[0].key=/certs/selfsigned.key"
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "traefik-certificates:/letsencrypt"
+      - "/certs:/certs"  # Mount the certs directory
 
   mongodb:
     image: mongo:5.0  # Updated MongoDB image version
@@ -60,9 +59,8 @@ services:
     restart: always
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(`your-domain.com`)"  # Change to your domain
+      - "traefik.http.routers.frontend.rule=Host(`34.172.128.64`)"  # Use your IP address
       - "traefik.http.routers.frontend.entrypoints=websecure"
-      - "traefik.http.routers.frontend.tls.certresolver=myresolver"
 
 volumes:
   traefik-certificates:
