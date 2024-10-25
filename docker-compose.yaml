@@ -1,23 +1,6 @@
 version: '3.8'
 
 services:
-  traefik:
-    image: traefik:v2.0
-    command:
-      - "--api.insecure=true"  # Optional: enable Traefik dashboard
-      - "--providers.docker=true"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
-      - "--entrypoints.websecure.http.tls=true"  # Enable TLS for websecure entrypoint
-      - "--entrypoints.websecure.http.tls.certificates[0].cert=/certs/selfsigned.crt"
-      - "--entrypoints.websecure.http.tls.certificates[0].key=/certs/selfsigned.key"
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "/certs:/certs"  # Mount the certs directory
-
   mongodb:
     image: mongo:5.0  # Updated MongoDB image version
     container_name: mongodb
@@ -56,7 +39,7 @@ services:
       dockerfile: Dockerfile
     container_name: frontend
     expose:
-      - "4200"  # Internal port used by the frontend service
+      - "80:4200"  # Internal port used by the frontend service
     restart: always
     labels:
       - "traefik.enable=true"
