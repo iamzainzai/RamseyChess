@@ -25,7 +25,7 @@ export class PlayAiService {
   ping() {
     console.log("Play ai running");
   }
-  async getNextMoveByStratId(fen: string, strat_id: string): Promise<NextMove | {}> {
+  async getNextMoveByStratId(fen: string | null, strat_id: string | null): Promise<NextMove | {}> {
     console.log("Fetching next move for strategy ID:", strat_id);
     try {
       const nextMove = await firstValueFrom(
@@ -36,11 +36,19 @@ export class PlayAiService {
           })
         )
       );
+  
+      if (Object.keys(nextMove).length === 0) {
+        return {best_move : ''} as NextMove;
+      }
+  
       console.log('Next move fetched:', nextMove);
-      return nextMove;
+      return {best_move : ''} as NextMove;
     } catch (error) {
-      console.error('Error fetching next move:', error);
-      return {}; // Return an empty object or handle appropriately
+      if (error instanceof Error) {
+        console.error('Network error or connection issue:', error);
+        return {}; // Return null or another appropriate value for connection issues
+      }
+      throw error; // Propagate other errors
     }
   }
 }
