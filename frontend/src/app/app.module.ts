@@ -15,7 +15,7 @@ import { MinimaxComponent } from './sandbox-page/minimax/minimax.component';
 import { BlogComponent } from './blog-page/blog.component';
 import { NavMenuComponent } from './navmenu/navmenu.component';
 import { PlayPageComponent } from './play-page/play-page.component';
-
+import { PlayAiCardComponent } from './play-card-page/play-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +25,8 @@ import { PlayPageComponent } from './play-page/play-page.component';
     MinimaxComponent,
     BlogComponent,
     NavMenuComponent,
-    PlayPageComponent
+    PlayPageComponent,
+    PlayAiCardComponent
   ],
   imports: [
     HttpClientModule,

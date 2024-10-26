@@ -7,3 +7,7 @@
     height: auto;
     min-height: 100vh;
 }
+.full-card {
+    cursor: pointer;
+    transition: transform 0.2s;
+  }

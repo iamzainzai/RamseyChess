@@ -1,0 +1,7 @@
+<app-navmenu></app-navmenu>
+<div class="container">
+  <p>
+    Card Id : {{this.cardId}}
+  </p>
+  <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" [size]="boardSize"></ngx-chess-board>
+</div>

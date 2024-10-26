@@ -19,9 +19,9 @@
     <!-- Render cards if available -->
     <div class="container mt-4">
         <div class="row">
-            <div *ngFor="let card of cards" class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4 full-card">
+            <div *ngFor="let card of cards" class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4 full-card" [routerLink]="['/cards', card._id.$oid]">
                 <div class="card h-100">
-              <div class="card-body">
+                  <div class="card-body" >
                 <!-- First row: Name and Elo -->
                 <div class="row mb-2">
                   <div class="col-8">

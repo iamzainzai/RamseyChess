@@ -1,0 +1,13 @@
+.container
+{
+    min-height: 100vh;
+    height: 100%;
+    margin-top: 125px;
+}
+/* Adjust styling for smaller screens */
+@media (max-width: 768px) {
+    .container
+    {
+        margin-top: 275px;
+    }
+}
