@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 4200
 
 # Step 7: Start the Angular development server (ng serve)
-CMD ["npx", "ng", "serve", "--host", "0.0.0.0"]
+CMD ["npx", "ng", "serve", "--host", "0.0.0.0", "--disable-host-check"]
