@@ -25,8 +25,8 @@ services:
     ports:
       - "3001:5000"
     depends_on:
-        mongodb:
-          condition: service_healthy
+      mongodb:
+        condition: service_healthy
     restart: always
     environment:
       - FLASK_APP=server.py
@@ -39,5 +39,12 @@ services:
       dockerfile: Dockerfile
     container_name: frontend
     ports:
-      - "5000:4200"  # Map host port 4200 to container port 4200
+      - "80:4200"  # Internal port used by the frontend service
     restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`34.172.128.64`)"  # Use your IP address
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+
+volumes:
+  traefik-certificates:
