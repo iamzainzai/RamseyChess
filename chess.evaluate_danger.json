@@ -1,0 +1,15 @@
+[{
+  "_id": {
+    "$oid": "67173cdf42b47fc669033e9e"
+  },
+  "name": "default",
+  "whitePieces": {
+    "hangingPieces": 1.5,
+    "attackedPieces": 3
+  },
+  "blackPieces": {
+    "hangingPieces": 1.5,
+    "attackedPieces": 3
+  },
+  "owner": null
+}]

@@ -9,12 +9,18 @@ import { filter } from 'rxjs/operators';
 })
 export class BlogComponent implements OnInit {
   activeSection: string = 'section1';
+  eq1 : string = '\\[ F_1 = \\sum_{i=1}^{t} \\text{Piece Count}_i \\times \\text{Piece Value}_i \\]';
+  eq2: string = '\\[ F_2 = \\sum_{j=1}^{h} \\text{Hanging Piece Value}_j + \\sum_{k=1}^{u} \\text{Underprotected Piece Value}_k \\]';
+  eq3: string = '\\[ \\text{Evaluation} = c_1 \\cdot F_1 + c_2 \\cdot F_2 \\]';
+
   constructor(private route: ActivatedRoute, private router: Router) {}
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
     const section1 = document.getElementById('section1')?.getBoundingClientRect();
     const section2 = document.getElementById('section2')?.getBoundingClientRect();
     const section3 = document.getElementById('section3')?.getBoundingClientRect();
+
+    
 
     if (section1 && section1.top <= 0 && section1.bottom > 0) {
       this.activeSection = 'section1';

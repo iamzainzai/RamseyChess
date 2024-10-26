@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "671afaa69eb0593a9dea2024"
+  },
+  "name": "default",
+  "strategy_list": [
+    {
+      "collection": "evaluate_material",
+      "strat_id": "67173c8542b47fc669033e9b"
+    },
+    {
+      "collection": "evaluate_danger",
+      "strat_id": "67173cdf42b47fc669033e9e"
+    }
+  ],
+  "wins": 0,
+  "losses": 0,
+  "elo": 1000
+}]

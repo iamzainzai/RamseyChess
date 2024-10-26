@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "67173c8542b47fc669033e9b"
+  },
+  "name": "default",
+  "owner": null,
+  "blackPieces": {
+    "pawn": -1,
+    "knight": -3,
+    "bishop": -3,
+    "rook": -5,
+    "queen": -9
+  },
+  "whitePieces": {
+    "pawn": 1,
+    "knight": 3,
+    "bishop": 3,
+    "rook": 5,
+    "queen": 9
+  }
+}]

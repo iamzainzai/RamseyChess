@@ -15,16 +15,16 @@
     <!-- Right side: Chessboard, only on right side on desktop screens -->
     <div class="col-12 col-lg-6 order-1 order-lg-2 d-flex justify-content-center">
       <div class="boards-container" style="max-width: 500px;">
-        <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" [size]="400"></ngx-chess-board>
+        <span>Click on Evaluate to get the AI to make a move</span>
+        <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" [size]="boardSize"></ngx-chess-board>
         <div class="text-center mt-3">
           <button class="custom-button reset-btn" (click)="reset()">Reset</button>
         </div>
-        <div style="text-align: center;">
+        <div style="text-align: center; font-size: 12px;">
           <p>{{ this.currentFen }}</p>
         </div>
       </div>
     </div>
   </div>
-
 
 </div>

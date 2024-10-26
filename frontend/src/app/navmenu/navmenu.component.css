@@ -37,7 +37,7 @@
 
 
   /* Adjust styling for smaller screens */
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     .my-container ul {
       flex-direction: column; /* Stack menu items vertically on very small screens */
       align-items: center;
