@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import time
 
-mongo_url = "mongodb://mongodb:27017"
+mongo_url = "mongodb://34.172.128.64:27018/"
 max_retries = 5
 retry_interval = 10  # seconds
 

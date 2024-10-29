@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import chess
 from flasgger import Swagger
 from flask_cors import CORS
+from routes.public_routes.public_routes import public_routes
 
 
 from data_access.material_manager import EvaluateMaterialManager
@@ -19,6 +20,9 @@ from minimax import Minimax
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 swagger = Swagger(app)
+
+app.register_blueprint(public_routes)
+
 
 @app.route('/gen_evaluate', methods=['POST'])
 def evaluate_material():
@@ -150,41 +154,6 @@ def danger_eval():
     "best_move": best_move,
     "danger_score" : legal_moves_fen[best_move]
     })
-
-@app.route('/get_evaluators', methods=['GET'])
-def get_evaluators():
-  """
-  Retrieve all evaluators with a null owner.
-  This endpoint returns two lists: one for material evaluators and one for danger evaluators,
-  both of which have no assigned owner.
-  ---
-  responses:
-    200:
-      description: A JSON object containing lists of material and danger evaluators with no owner.
-      schema:
-        type: object
-        properties:
-          material_evaluators:
-            type: array
-            items:
-              type: object
-              description: A list of material evaluators with null owner.
-          danger_evaluators:
-            type: array
-            items:
-              type: object
-              description: A list of danger evaluators with null owner.
-  """
-  em = EvaluateMaterialManager()
-  ed = EvaluateDangerManager()
-
-  public_ems = em.getNullOwner()
-  public_eds = ed.getNullOwner()
-
-  return jsonify({
-    "material_evaluators" : public_ems,
-    "danger_evaluators": public_eds
-  })
 
 @app.route('/mat_eval_debug', methods=['POST'])
 def material_eval_debug():
