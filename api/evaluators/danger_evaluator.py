@@ -11,14 +11,27 @@ class DangerEvaluator():
         self.board = board
     
     def calculate(self) -> float:
-        own_pieces = self.board.piece_map()
-        attacked_pieces = 0
+        all_pieces = self.board.piece_map()
+        white_hanging_pieces = 0
+        black_hanging_pieces = 0
 
-        for square , piece in own_pieces.items():
-            attacked_pieces += self._is_attacked(piece, square)
-        
-        return self.eval_manager["whitePieces"]["hangingPieces"] * attacked_pieces #type: ignore[index]
-    
+        for square, piece in all_pieces.items():
+            attackers = len(self.board.attackers(not piece.color, square))
+            defenders = len(self.board.attackers(piece.color, square))
+            
+            # Check if the piece is hanging (more attackers than defenders)
+            if attackers > defenders:
+                if piece.color == chess.WHITE:
+                    white_hanging_pieces += 1
+                elif piece.color == chess.BLACK:
+                    black_hanging_pieces += 1
+
+        # Calculate the difference: positive if black has more hanging pieces, negative if white has more
+        hanging_difference = black_hanging_pieces - white_hanging_pieces
+
+        # Apply the weight if there is a difference in hanging pieces
+        return hanging_difference * self.eval_manager["whitePieces"]["hangingPieces"]
+            
     def _is_attacked(self, piece, square) -> int:
         """Checks if the given piece at the specified square is attacked."""
         color = piece.color
