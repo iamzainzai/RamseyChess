@@ -71,7 +71,7 @@ def material_eval():
     
     matEval = MaterialEvaluator(eval_manager=material_scoring, board=board)
     matEval.set_board(board)
-    minimax = Minimax(evaluator=matEval, depth=depth)
+    minimax = Minimax(evaluator=[matEval], depth=depth)
     
     best_move = minimax.find_best_move(board)
     
@@ -131,7 +131,7 @@ def material_eval_debug():
     material_scoring = em.getCurrent()
     
     matEval = MaterialEvaluator(eval_manager=material_scoring, board=board)
-    minimax = Minimax(evaluator=matEval, depth=depth, debug=debug)
+    minimax = Minimax(evaluator=[matEval], depth=depth, debug=debug)
     
     best_move = minimax.find_best_move(board)
     
@@ -159,7 +159,7 @@ def submit_exec():
    board = chess.Board(fen)
    
    matEval = MaterialEvaluator(eval_manager=eval_manager,board=board)
-   minimax = Minimax(evaluator=matEval, depth=depth)
+   minimax = Minimax(evaluator=[matEval], depth=depth)
    
    best_move = minimax.find_best_move(board)
    
@@ -201,5 +201,6 @@ def mixed_eval():
        "best_move": board.san(best_move),
        "evaluators_used": [str(matEval), str(danEval)]
    })
+
 if __name__ == '__main__':
   app.run(debug=True)
