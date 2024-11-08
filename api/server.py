@@ -26,46 +26,6 @@ app.register_blueprint(public_routes)
 
 @app.route('/gen_evaluate', methods=['POST'])
 def evaluate_material():
-  """
-  Evaluate the material and danger scores for a given chess position.
-  This endpoint computes both the material score and the danger score 
-  based on the current board position represented by the FEN string. 
-  Users must provide the evaluation names for both material and danger 
-  scoring.
-
-  ---
-  parameters:
-    - name: body
-      in: body
-      required: true
-      schema:
-        type: object
-        properties:
-          fen:
-            type: string
-            example: 'r1b2r2/p2p1pk1/1qp1pN1p/3nP1p1/2B4Q/3R4/PPP2PPP/2K4R w - - 1 0'
-            description: FEN string representing the current chess position.
-          mat_eval_name:
-            type: string
-            example: 'default'
-            description: Name of the material evaluation configuration to use.
-          dan_eval_name:
-            type: string
-            example: 'default'
-            description: Name of the danger evaluation configuration to use.
-  responses:
-    200:
-      description: A JSON object containing both the material score and danger score.
-      schema:
-        type: object
-        properties:
-          material_score:
-            type: number
-            description: The calculated material score based on the board position.
-          danger_score:
-            type: number
-            description: The calculated danger score based on the board position.
-  """
   data    = request.get_json()
 
   fen       = data.get("fen", None)

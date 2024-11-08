@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, request, jsonify
 from data_access.material_manager import EvaluateMaterialManager
 from data_access.danger_manager import EvaluateDangerManager
 from data_access.strategy_cards_manager import AiPremadeStratDoc, AiPremadeManager
@@ -26,28 +26,6 @@ def get_strategies_expand():
 
 @public_routes.route('/get_evaluators', methods=['GET'])
 def get_evaluators():
-  """
-  Retrieve all evaluators with a null owner.
-  This endpoint returns two lists: one for material evaluators and one for danger evaluators,
-  both of which have no assigned owner.
-  ---
-  responses:
-    200:
-      description: A JSON object containing lists of material and danger evaluators with no owner.
-      schema:
-        type: object
-        properties:
-          material_evaluators:
-            type: array
-            items:
-              type: object
-              description: A list of material evaluators with null owner.
-          danger_evaluators:
-            type: array
-            items:
-              type: object
-              description: A list of danger evaluators with null owner.
-  """
   em = EvaluateMaterialManager()
   ed = EvaluateDangerManager()
 
@@ -58,3 +36,27 @@ def get_evaluators():
     "material_evaluators" : public_ems,
     "danger_evaluators": public_eds
   })
+
+@public_routes.route('/get_strategy_detail', methods=['POST'])
+def get_strategy_detail():
+  req = request.get_json()
+  strategy_list = req["strategy_list"]
+  available_collections = {
+    "evaluate_material": EvaluateMaterialManager,
+    "evaluate_danger": EvaluateDangerManager
+  }
+
+  strategy_details_list = []
+  for strategy in strategy_list:
+    collection = strategy["collection"]
+    
+    if collection in available_collections:
+        manager = available_collections[collection]()
+        manager.loadById(strategy["strat_id"])
+        
+        payload = manager.getCurrent()
+        payload["type"] = collection
+        strategy_details_list.append(payload)
+  
+  return strategy_details_list
+

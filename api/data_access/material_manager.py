@@ -30,7 +30,13 @@ class EvaluateMaterialManager():
         if self.current_doc is None:
             self.current_doc = self.docs.find_one({"name": "default2"})
         return self.current_doc
+    
+    def loadById(self, strategy_id : str):
+        filter = {"_id": ObjectId(strategy_id)}  
+        self.current_doc = self.docs.find_one(filter)
 
+        return self.current_doc
+    
     def getCurrent(self):
         return json.loads(dumps(self.current_doc))
 

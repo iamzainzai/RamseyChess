@@ -34,8 +34,13 @@ class EvaluateDangerManager():
         if self.current_doc is None:
             self.current_doc = self.docs.find_one({"name": "default"})
 
+    def loadById(self, strat_id : str):
+        filter = {"_id" : ObjectId(strat_id)}
+        
+        self.current_doc = self.docs.find_one(filter)
+
     def getCurrent(self):
-        return self.current_doc
+        return json.loads(dumps(self.current_doc))
     
     def getNullOwner(self):
         return list(self.docs.find({"owner": None}, {"_id": 0}))
