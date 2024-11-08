@@ -21,9 +21,7 @@ def get_strategies_expand():
   public_strats = pm.getNullOwner()
 
   print(public_strats, file=sys.stdout)
-  return jsonify({
-    "strategies" : public_strats
-  })
+  return public_strats
 
 
 @public_routes.route('/get_evaluators', methods=['GET'])
