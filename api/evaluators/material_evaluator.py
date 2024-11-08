@@ -19,6 +19,15 @@ class MaterialEvaluator():
             opponent_score += len(self.board.pieces(getattr(chess, piece_type.upper()), chess.WHITE)) * self.eval_manager["whitePieces"][piece_type]  #type: ignore[index]
 
         return own_score + opponent_score     
+    
+    def __str__(self):
+        return (
+            f"MaterialEvaluator("
+            f"blackPieces: {self.eval_manager['blackPieces']}, "
+            f"whitePieces: {self.eval_manager['whitePieces']}, "
+            f"board_fen: {self.board.fen()}"
+            f")"
+        )
 
 if __name__ == "__main__":
     print("Testbed")

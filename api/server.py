@@ -209,5 +209,37 @@ def submit_exec():
        "material_score": matEval.calculate()
    })
 
+@app.route('/mixed_eval', methods=['POST'])
+def mixed_eval():
+   req                = request.get_json()
+   selected_evaluators = req.get("evaluators", None)
+   # This is a list of strategy types
+   # {material_evaluator : {"name" : "pawns", "w": 1} , "danger_evaluator" : {"name": "coward", "w": 1}}
+   fen   = req.get("fen", None)
+   depth = req.get("depth", 1)
+
+   depth = min(depth, 4)
+   board = chess.Board(fen)
+
+  # Accesso a la BD
+   em = EvaluateMaterialManager()
+   em.loadOne(selected_evaluators["material_evaluator"]["name"])
+   material_scoring = em.getCurrent()
+  # Accesso a BD para danger
+   ed = EvaluateDangerManager()
+   ed.loadOne(selected_evaluators["danger_evaluator"]["name"])
+   danger_scoring = ed.getCurrent()
+
+   matEval = MaterialEvaluator(eval_manager=material_scoring, board=board)
+   danEval = DangerEvaluator(eval_manager=danger_scoring, board=board)
+   print([matEval, danEval])
+  # Both matEval and danEval implement the .calculate() method
+   minimax = Minimax(evaluator=[matEval, danEval], depth=depth)
+   best_move = minimax.find_best_move(board)
+
+   return jsonify({
+       "best_move": board.san(best_move),
+       "evaluators_used": [str(matEval), str(danEval)]
+   })
 if __name__ == '__main__':
   app.run(debug=True)

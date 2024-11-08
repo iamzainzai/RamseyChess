@@ -9,80 +9,54 @@ class Minimax:
  
 
     def minimax(self, board, depth, maximizing_player):
-        self.evaluator.set_board(board)
-        with open("debug.txt", "a") as debug_file:
-            if self.debug:
-                debug_file.write(f"Minimax call - Depth: {depth}, Maximizing: {maximizing_player}\n")
+        for evaluator in self.evaluator:
+            evaluator.set_board(board)
+        
         if depth == 0 or board.is_game_over():
-            score = self.evaluator.calculate()
-            if self.debug:
-                with open("debug.txt", "a") as debug_file:
-                    debug_file.write(f"Reached leaf node or game over. Evaluation score: {score}\n")
-            return score
+            return sum(evaluator.calculate() for evaluator in self.evaluator)
 
         if maximizing_player:
             max_eval = float('-inf')
             for move in board.legal_moves:
                 board.push(move)
-                if self.debug:
-                    with open("debug.txt", "a") as debug_file:
-                        debug_file.write(f"Trying move: {move}\n")
                 eval = self.minimax(board, depth - 1, False)
                 board.pop()
                 max_eval = max(max_eval, eval)
-            if self.debug:
-                with open("debug.txt", "a") as debug_file:
-                    debug_file.write(f"Maximizing player - Best evaluation: {max_eval}\n")
             return max_eval
         else:
             min_eval = float('inf')
             for move in board.legal_moves:
                 board.push(move)
-                if self.debug:
-                    with open("debug.txt", "a") as debug_file:
-                        debug_file.write(f"Trying move: {move}\n")
                 eval = self.minimax(board, depth - 1, True)
                 board.pop()
                 min_eval = min(min_eval, eval)
-            if self.debug:
-                with open("debug.txt", "a") as debug_file:
-                    debug_file.write(f"Minimizing player - Best evaluation: {min_eval}\n")
             return min_eval
 
     def find_best_move(self, board):
-        self.evaluator.set_board(board)
+        for evaluator in self.evaluator:
+            evaluator.set_board(board)
+        
         best_move = None
         if board.turn == chess.WHITE:
             max_eval = float('-inf')
             for move in board.legal_moves:
                 board.push(move)
-                if self.debug:
-                    with open("debug.txt", "a") as debug_file:
-                        debug_file.write(f"Evaluating move for white: {move}\n")
                 eval = self.minimax(board, self.depth - 1, False)
                 board.pop()
                 if eval > max_eval:
                     max_eval = eval
                     best_move = move
-            if self.debug:
-                with open("debug.txt", "a") as debug_file:
-                    debug_file.write(f"Best move for white: {best_move} with evaluation: {max_eval}\n")
         else:
             min_eval = float('inf')
             for move in board.legal_moves:
                 board.push(move)
-                if self.debug:
-                    with open("debug.txt", "a") as debug_file:
-                        debug_file.write(f"Evaluating move for black: {move}\n")
                 eval = self.minimax(board, self.depth - 1, True)
                 board.pop()
                 if eval < min_eval:
                     min_eval = eval
                     best_move = move
-            if self.debug:
-                with open("debug.txt", "a") as debug_file:
-                    debug_file.write(f"Best move for black: {best_move} with evaluation: {min_eval}\n")
         return best_move
+
 
 if __name__ == "__main__":
     from data_access.material_manager import EvaluateMaterialManager
@@ -97,6 +71,6 @@ if __name__ == "__main__":
 
     print(matEval.eval_manager)
         
-    minimax = Minimax(evaluator=matEval, depth=3)
+    minimax = Minimax(evaluator=[matEval], depth=3)
     best_move = minimax.find_best_move(board)
     print(board.san(best_move))

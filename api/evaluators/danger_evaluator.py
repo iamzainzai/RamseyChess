@@ -17,10 +17,18 @@ class DangerEvaluator():
         for square , piece in own_pieces.items():
             attacked_pieces += self._is_attacked(piece, square)
         
-        return self.eval_manager["ownPieces"]["attackedPieces"] * attacked_pieces #type: ignore[index]
+        return self.eval_manager["whitePieces"]["hangingPieces"] * attacked_pieces #type: ignore[index]
     
     def _is_attacked(self, piece, square) -> int:
         """Checks if the given piece at the specified square is attacked."""
         color = piece.color
         attackers = self.board.attackers(not color, square)
         return len(attackers)
+    
+    def __str__(self):
+        return (
+            f"DangerEvaluator("
+            f"whitePieces: {self.eval_manager['whitePieces']}, "
+            f"board_fen: {self.board.fen()}"
+            f")"
+        )
