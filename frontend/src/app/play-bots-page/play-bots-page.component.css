@@ -1,6 +1,18 @@
 .game-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    min-height: 100vh;
-  }
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 100vh;
+}
+
+.white-selected td {
+  background-color: rgb(187, 247, 159);
+}
+
+.black-selected td {
+  background-color: rgb(218, 78, 78);
+}
+
+tr {
+  cursor: pointer;
+}

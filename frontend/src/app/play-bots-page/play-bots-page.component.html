@@ -1,40 +1,80 @@
 <app-navmenu></app-navmenu>
 <div class="container game-wrapper" style="margin-top: 100px;">
-    <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" [size]="boardSize" [darkTileColor]="'#779557'"
-    [lightTileColor]="'#ECECD0'" [pieceIcons]="{
-      blackBishopUrl: 'assets/pieces/bb.svg',
-      blackKingUrl: 'assets/pieces/bk.svg',
-      blackKnightUrl: 'assets/pieces/bn.svg',
-      blackPawnUrl: 'assets/pieces/bp.svg',
-      blackQueenUrl: 'assets/pieces/bq.svg',
-      blackRookUrl: 'assets/pieces/br.svg',
-      whiteBishopUrl: 'assets/pieces/wb.svg',
-      whiteKingUrl: 'assets/pieces/wk.svg',
-      whiteKnightUrl: 'assets/pieces/wn.svg',
-      whitePawnUrl: 'assets/pieces/wp.svg',
-      whiteQueenUrl: 'assets/pieces/wq.svg',
-      whiteRookUrl: 'assets/pieces/wr.svg'
-    }"></ngx-chess-board>
-<div class="text-center mt-3">
-    <button class="btn btn-primary" (click)="playTwoMoves()" [disabled]="isPlaying">
-      Play Two Moves
-    </button>
-  
-    <div class="mt-3">
-      <label for="numMoves" class="text-white">Number of Moves:</label>
-      <input
-        type="number"
-        id="numMoves"
-        name="numMoves"
-        min="1"
-        [(ngModel)]="numMoves"
-        class="form-control mx-auto mt-2"
-        style="max-width: 100px; display: inline-block;"
-      >
-      <button class="btn btn-primary ms-2" (click)="playNMoves(numMoves, '671dbd8e7fa512fefbdbe6cf', '671afaa69eb0593a9dea2024')" [disabled]="isPlaying">
-        Play N Moves
-      </button>
+  <div class="row">
+    <!-- Chessboard Column -->
+    <div class="col-12 col-lg-6 d-flex justify-content-center">
+      <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" [size]="boardSize" [darkTileColor]="'#779557'"
+        [lightTileColor]="'#ECECD0'" [pieceIcons]="{
+          blackBishopUrl: 'assets/pieces/bb.svg',
+          blackKingUrl: 'assets/pieces/bk.svg',
+          blackKnightUrl: 'assets/pieces/bn.svg',
+          blackPawnUrl: 'assets/pieces/bp.svg',
+          blackQueenUrl: 'assets/pieces/bq.svg',
+          blackRookUrl: 'assets/pieces/br.svg',
+          whiteBishopUrl: 'assets/pieces/wb.svg',
+          whiteKingUrl: 'assets/pieces/wk.svg',
+          whiteKnightUrl: 'assets/pieces/wn.svg',
+          whitePawnUrl: 'assets/pieces/wp.svg',
+          whiteQueenUrl: 'assets/pieces/wq.svg',
+          whiteRookUrl: 'assets/pieces/wr.svg'
+        }">
+      </ngx-chess-board>
+    </div>
+
+    <!-- Table Column -->
+    <div class="col-12 col-lg-6">
+      <div class="container mt-3">
+        <div class="text-center mt-3">
+          <div class="mt-3">
+            <label for="numMoves" class="text-white">Number of Moves:</label>
+            <input
+              type="number"
+              id="numMoves"
+              name="numMoves"
+              min="1"
+              [(ngModel)]="numMoves"
+              class="form-control mx-auto mt-2"
+              style="max-width: 100px; display: inline-block;"
+            >
+            <button 
+                class="btn btn-primary ms-2" 
+                (click)="playNMoves(numMoves, whiteStrategyId ? whiteStrategyId : '', blackStrategyId ? blackStrategyId : '')" 
+                [disabled]="isPlaying || !whiteStrategyId || !blackStrategyId"
+            >
+              Play N Moves
+            </button>
+          </div>
+        </div>
+
+        <!-- Strategy Details Table -->
+        <div class="table-responsive mt-4">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Strategy ID</th>
+                <th>Strategy Name</th>
+                <th>Wins</th>
+                <th>Losses</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr 
+                  *ngFor="let strategy of publicStrategies; let i = index"
+                  (click)="onRowClick(strategy, i)"
+                  [ngClass]="{
+                    'white-selected': i === selectedWhiteRowIndex,
+                    'black-selected': i === selectedBlackRowIndex
+                  }"
+                >
+                  <td>{{ strategy._id.$oid }}</td>
+                  <td>{{ strategy.name }}</td>
+                  <td>{{ strategy.wins }}</td>
+                  <td>{{ strategy.losses }}</td>
+                </tr>
+              </tbody>              
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-  
 </div>
