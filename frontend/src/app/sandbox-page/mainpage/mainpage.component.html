@@ -3,12 +3,10 @@
 <div class="container game-wrapper mt-5">
   <div class="row" style="margin-top: 85px;">
     <!-- Left side: Chessboard, takes the entire left side without a container -->
-    <div class="col-12 col-lg-6 order-1 order-lg-1 d-flex justify-content-center">
-      <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" 
-        [size]="boardSize"  
-        [darkTileColor]="'#779557'"
-        [lightTileColor]="'#ECECD0'"
-        [pieceIcons]="{
+    <div class="col-12 col-lg-6 order-1 order-lg-1 d-flex flex-column align-items-center">
+      <!-- Chessboard -->
+      <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" [size]="boardSize" [darkTileColor]="'#779557'"
+        [lightTileColor]="'#ECECD0'" [pieceIcons]="{
           blackBishopUrl: 'assets/pieces/bb.svg',
           blackKingUrl: 'assets/pieces/bk.svg',
           blackKnightUrl: 'assets/pieces/bn.svg',
@@ -21,13 +19,16 @@
           whitePawnUrl: 'assets/pieces/wp.svg',
           whiteQueenUrl: 'assets/pieces/wq.svg',
           whiteRookUrl: 'assets/pieces/wr.svg'
-        }"
-      ></ngx-chess-board>
+        }"></ngx-chess-board>
+
+      <!-- FEN display -->
+      <div class="text-center mt-3" style="font-size: 12px; word-wrap: break-word; overflow-wrap: break-word;">
+        <p>{{ this.currentFen }}</p>
+      </div>
     </div>
 
-    <!-- Right side: Parameters, buttons, and current FEN -->
+    <!-- Right side: Parameters, buttons, and additional components -->
     <div class="col-12 col-lg-6 order-2 order-lg-2 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-
       <!-- Thinking Depth and Execution -->
       <div style="text-align: center;">
         <app-mini-max></app-mini-max>
@@ -36,13 +37,6 @@
       <div class="text-center mb-3">
         <app-mat-eval [currentFen]="this.currentFen"></app-mat-eval>
       </div>
-
-      <!-- Current FEN display -->
-      <div class="text-center" style="font-size: 12px;">
-        <p>{{ this.currentFen }}</p>
-      </div>
-
     </div>
-    
   </div>
 </div>

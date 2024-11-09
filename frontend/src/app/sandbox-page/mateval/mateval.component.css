@@ -43,16 +43,22 @@
 
 /* Button Styling */
 .btn-primary.custom-button {
-  background-color: #fdd835;
+  background-color: #C2FE72;
   border: none;
   color: #4a4a4a;
   font-weight: bold;
+  padding: 10px 100px;
+  margin-bottom: 10px;
 }
 
 .btn-primary.custom-button:hover {
   background-color: #528304;
 }
 .empty-cell
+{
+  background-color:  #4a4a4a;
+}
+td
 {
   background-color:  #4a4a4a;
 }

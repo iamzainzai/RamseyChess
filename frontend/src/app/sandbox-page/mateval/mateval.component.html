@@ -51,20 +51,25 @@
             <td class="piece-type-cell align-middle">King</td>
             <td class="input-cell"><input type="number" id="blackKingValue" [(ngModel)]="model.blackPieces.king" name="blackKingValue" required (input)="validateFloat($event)" step="0.1" class="form-control custom-input" /></td>
           </tr>
+          <tr>
+            <td colspan="4">
+              <div class="text-center mt-3">
+                <button 
+                  type="submit" 
+                  class="btn btn-primary custom-button" 
+                  (click)="isRequesting ? null : pingFlask()" 
+                  [disabled]="isRequesting">
+                  Evaluate
+                </button>
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
 
     <!-- Submit Button -->
-    <div class="text-center mt-3">
-      <button 
-        type="submit" 
-        class="btn btn-primary custom-button" 
-        (click)="isRequesting ? null : pingFlask()" 
-        [disabled]="isRequesting">
-        Evaluate
-      </button>
-    </div>
+
 
     <!-- Best Move Display -->
     <div *ngIf="bestMove" class="mt-3">
