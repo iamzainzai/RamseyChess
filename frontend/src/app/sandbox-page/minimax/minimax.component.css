@@ -34,9 +34,6 @@ td {
 }
 
 .container {
-  border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
   padding: 10px;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Soft shadow for lifting effect */
   transition: box-shadow 0.3s ease; /* Smooth transition on hover */
 }

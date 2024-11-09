@@ -1,40 +1,46 @@
 <div class="container mt-3">
   <!-- Header for Thinking Depth -->
   <div class="row">
-    <div class="col-12 text-center">
-      <h5 class="text-white">SELECT THINKING DEPTH</h5>
+    <div class="col-12 col-sm-6">
+      <div class="text-center">
+        <h5 class="text-white">SELECT THINKING DEPTH</h5>
+      </div>
     </div>
   </div>
 
   <!-- Box for Loaded and Execute Checkboxes and Depth Input -->
-  <div class="row justify-content-center mt-3">
-    <div class="col-12 col-md-6">
-      <div class="p-3" style="background-color: #4a4a4a; border-radius: 10px;">
-        <div class="row">
-          <!-- Loaded Checkbox -->
-          <div class="col-12 mb-3 text-center">
-            <div class="form-group">
-              <label class="d-flex align-items-center justify-content-center">
-                <input type="checkbox" class="form-check-input me-2" disabled>
-                <span style="margin-top: 5px; color: #f7f7d6;">Loaded</span>
-              </label>
+  <div class="row mt-3">
+    <div class="col-12">
+      <div class="p-3" style="background-color: #535252; float: left; width: inherit;">
+        <!-- START OF INNER BOX -->
+        <div class="row" >
+          <!-- Column 1: Checkboxes -->
+          <div class="col-6">
+            <!-- Loaded Checkbox -->
+            <div class="mb-3 text-center">
+              <div class="form-group">
+                <label class="d-flex align-items-center justify-content-center">
+                  <input type="checkbox" class="form-check-input me-2" disabled>
+                  <span style="margin-top: 5px; color: #f7f7d6;">&nbsp;&nbsp;&nbsp;Loaded</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Execute Checkbox -->
+            <div class="mb-3 text-center">
+              <div class="form-group">
+                <label class="d-flex align-items-center justify-content-center">
+                  <input type="checkbox" class="form-check-input me-2" disabled>
+                  <span style="margin-top: 5px; color: #f7f7d6;">&nbsp;&nbsp;Execute</span>
+                </label>
+              </div>
             </div>
           </div>
 
-          <!-- Execute Checkbox -->
-          <div class="col-12 mb-3 text-center">
-            <div class="form-group">
-              <label class="d-flex align-items-center justify-content-center">
-                <input type="checkbox" class="form-check-input me-2" disabled>
-                <span style="margin-top: 5px; color: #f7f7d6;">Execute</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Depth Input -->
-          <div class="col-12 text-center">
-            <div class="form-group depth-group">
-              <label for="depthValue" class="text-white">Depth (1-3):</label>
+          <!-- Column 2: Depth Input -->
+          <div class="col-6 d-flex flex-column justify-content-between">
+            <div class="form-group text-center mt-auto">
+              <label for="depthValue" class="text-white mb-4">Depth (1-3):</label>
               <input
                 type="number"
                 id="depthValue"
@@ -45,11 +51,14 @@
                 (ngModelChange)="onDepthChange($event)"
                 required
                 class="form-control mx-auto"
-                style="max-width: 100px;"
+                style="max-width: 75px;"
               >
             </div>
           </div>
         </div>
+        <!-- END OF INNER BOX -->
+
+
       </div>
     </div>
   </div>
