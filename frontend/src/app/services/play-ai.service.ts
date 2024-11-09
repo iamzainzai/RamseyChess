@@ -41,6 +41,16 @@ export class PlayAiService {
     );
   }
 
+  fetchStrategyCardDetailsById(strat_id : string) {
+    return this.http.post<StrategyDetailResponse>('/api/get_strategy_detail_by_id', {"strategy_id": strat_id}).pipe(
+      tap((response: StrategyDetailResponse) => {
+        console.log('Successfully fetched strategy card details:', response);
+        
+        return response;
+      })
+    );
+  }
+
   ping() {
     console.log("Play ai running");
   }

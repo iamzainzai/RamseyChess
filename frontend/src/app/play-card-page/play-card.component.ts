@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { StrategyCardData } from 'src/models/start-card.model';
+import { Component, OnInit, ViewChild, HostListener, ChangeDetectorRef } from '@angular/core';
+import { StrategyCardData, StrategyDetailResponse } from 'src/models/start-card.model';
 import { PlayAiService } from '../services/play-ai.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxChessBoardComponent } from 'ngx-chess-board';
@@ -14,19 +14,25 @@ import { Chess } from 'chess.js';
 
 export class PlayAiCardComponent implements OnInit {
   @ViewChild('chessBoard') chessBoard!: NgxChessBoardComponent;
-  strategy_card : StrategyCardData | null = null;
+  strategy_card : StrategyDetailResponse | null = null;
   cardId: string | null = null;
-  boardSize: number = 400;
+  boardSize: number = 600;
   gameFinished = false;
   currentFen : string = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-  constructor(private play_ai: PlayAiService, private route: ActivatedRoute) {}
+  constructor(private play_ai: PlayAiService, private route: ActivatedRoute, private cdr : ChangeDetectorRef) {}
 
   ngOnInit(): void 
   {
     this.route.params.subscribe(params => {
       this.cardId = params['id']; 
     }); 
-
+    if (this.cardId)
+    {
+      this.play_ai.fetchStrategyCardDetailsById(this.cardId).subscribe((response : StrategyDetailResponse) => {
+        console.log("RESPONSE: " + response);
+        this.strategy_card = response;
+      })
+    }
   }
   requestMoveByAi() 
   {
@@ -83,4 +89,27 @@ export class PlayAiCardComponent implements OnInit {
   
     return randomMove.from + randomMove.to; // Return the move in source + target format (e.g., e2e4)
   }
+
+
+  objectEntries(obj: any): { key: string, value: any }[] 
+  {
+    return Object.entries(obj).map(([key, value]) => ({ key, value }));
+  }
+  getPieceValue(pieces: any, key: string): number | undefined 
+  {
+    return (pieces as Record<string, number>)[key];
+  }
+  updateBoardSize(): number 
+  {
+    const viewportWidth = window.visualViewport ? window.visualViewport.width : window.innerWidth;
+    this.boardSize = viewportWidth * 0.8 > 600 ? 600 : viewportWidth * 0.8;
+    console.log(viewportWidth)
+    return this.boardSize;
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.updateBoardSize();
+    this.cdr.detectChanges();
+  }
+
 }

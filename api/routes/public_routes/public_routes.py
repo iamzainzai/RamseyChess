@@ -60,3 +60,31 @@ def get_strategy_detail():
   
   return strategy_details_list
 
+@public_routes.route('/get_strategy_detail_by_id', methods=['POST'])
+def get_strategy_detail_by_id():
+  req = request.get_json()
+  strategy_id = req["strategy_id"]
+  
+  strategy_manager = AiPremadeManager()
+  strategy_manager.loadById(strategy_id)
+
+  strategy_list = strategy_manager.getCurrent()["strategy_list"]
+
+  available_collections = {
+    "evaluate_material": EvaluateMaterialManager,
+    "evaluate_danger": EvaluateDangerManager
+  }
+
+  strategy_details_list = []
+  for strategy in strategy_list:
+    collection = strategy["collection"]
+    
+    if collection in available_collections:
+        manager = available_collections[collection]()
+        manager.loadById(strategy["strat_id"])
+        
+        payload = manager.getCurrent()
+        payload["type"] = collection
+        strategy_details_list.append(payload)
+  
+  return strategy_details_list

@@ -1,26 +1,88 @@
 <app-navmenu></app-navmenu>
+
 <div class="container">
-  <p>
-    Card Id : {{this.cardId}}
-  </p>
-  <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" 
-  [size]="boardSize" 
-  [darkDisabled]="true" 
-  [darkTileColor]="'#779557'"
-  [lightTileColor]="'#ECECD0'"
-  [pieceIcons]="{
-    blackBishopUrl: 'assets/pieces/bb.svg',
-    blackKingUrl: 'assets/pieces/bk.svg',
-    blackKnightUrl: 'assets/pieces/bn.svg',
-    blackPawnUrl: 'assets/pieces/bp.svg',
-    blackQueenUrl: 'assets/pieces/bq.svg',
-    blackRookUrl: 'assets/pieces/br.svg',
-    whiteBishopUrl: 'assets/pieces/wb.svg',
-    whiteKingUrl: 'assets/pieces/wk.svg',
-    whiteKnightUrl: 'assets/pieces/wn.svg',
-    whitePawnUrl: 'assets/pieces/wp.svg',
-    whiteQueenUrl: 'assets/pieces/wq.svg',
-    whiteRookUrl: 'assets/pieces/wr.svg'
-  }"
-></ngx-chess-board>
+  <div class="row">
+    <!-- Chessboard Column -->
+    <div class="col-12 col-lg-6 d-flex justify-content-center">
+      <div>
+        <p>Card Id : {{ this.cardId }}</p>
+        <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" 
+          [size]="boardSize" 
+          [darkDisabled]="true" 
+          [darkTileColor]="'#779557'"
+          [lightTileColor]="'#ECECD0'"
+          [pieceIcons]="{
+            blackBishopUrl: 'assets/pieces/bb.svg',
+            blackKingUrl: 'assets/pieces/bk.svg',
+            blackKnightUrl: 'assets/pieces/bn.svg',
+            blackPawnUrl: 'assets/pieces/bp.svg',
+            blackQueenUrl: 'assets/pieces/bq.svg',
+            blackRookUrl: 'assets/pieces/br.svg',
+            whiteBishopUrl: 'assets/pieces/wb.svg',
+            whiteKingUrl: 'assets/pieces/wk.svg',
+            whiteKnightUrl: 'assets/pieces/wn.svg',
+            whitePawnUrl: 'assets/pieces/wp.svg',
+            whiteQueenUrl: 'assets/pieces/wq.svg',
+            whiteRookUrl: 'assets/pieces/wr.svg'
+          }">
+        </ngx-chess-board>
+      </div>
+    </div>
+
+    <!-- Tables Column -->
+    <div class="col-12 col-lg-6">
+      <!-- STRATEGY CARD OVERVIEW -->
+      <div *ngFor="let strat of this.strategy_card" class="col-12 strategy-detail mt-3">
+        <p>Strategy name: {{ strat.name }}</p>
+        <p>Strategy type: {{ strat.type }}</p>
+        <ng-container *ngIf="strat.type === 'evaluate_material'">
+          <div class="table-responsive">
+            <table class="table table-bordered w-100">
+              <thead style="border-bottom: solid 1px;">
+                <tr>
+                  <th>PieceType</th>
+                  <th>White</th>
+                  <th>Black</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let piece of objectEntries(strat.whitePieces)">
+                  <tr>
+                    <td style="text-transform: capitalize;">{{ piece.key }}</td>
+                    <td>{{ piece.value }}</td>
+                    <td>{{ getPieceValue(strat.blackPieces, piece.key) || 'N/A' }}</td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="strat.type === 'evaluate_danger'">
+          <div class="table-responsive">
+            <table class="table table-bordered w-100">
+              <thead style="border-bottom: solid 1px;">
+                <tr>
+                  <th>Evaluation</th>
+                  <th>White</th>
+                  <th>Black</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Attacked Pieces</td>
+                  <td>{{ strat.whitePieces.attackedPieces }}</td>
+                  <td>{{ strat.blackPieces.attackedPieces }}</td>
+                </tr>
+                <tr>
+                  <td>Hanging Pieces</td>
+                  <td>{{ strat.whitePieces.hangingPieces }}</td>
+                  <td>{{ strat.blackPieces.hangingPieces }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>
