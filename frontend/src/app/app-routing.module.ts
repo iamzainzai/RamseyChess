@@ -5,6 +5,7 @@ import { BlogComponent } from './blog-page/blog.component';
 import { PlayPageComponent } from './play-page/play-page.component';
 import { PlayAiCardComponent } from './play-card-page/play-card.component';
 import { PlayBotsPageComponent } from './play-bots-page/play-bots-page.component';
+import { SignInPageComponent } from './sign-in-page/sign-in-page.component';
 
 const routerOptions: ExtraOptions = {
   anchorScrolling: 'enabled', 
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'blog', component: BlogComponent },
   { path: 'play-ai', component: PlayPageComponent},
   { path: 'cards/:id', component: PlayAiCardComponent },
-  { path: 'bot-vs-bot', component: PlayBotsPageComponent}
+  { path: 'bot-vs-bot', component: PlayBotsPageComponent},
+  { path: 'sign-in', component: SignInPageComponent}
 
 ];
 

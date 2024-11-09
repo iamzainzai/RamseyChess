@@ -1,0 +1,18 @@
+<app-navmenu></app-navmenu>
+<div class="container" style="margin-top: 100px;">
+    <div class="sign-in-container text-center mt-5">
+        <h2>Sign In to Ramsey Chess</h2>
+      
+        <!-- Show login button if the user is not authenticated -->
+        <div *ngIf="!(auth.isAuthenticated$ | async)">
+          <button (click)="login()" class="btn btn-primary mt-3 custom-button">Log In</button>
+        </div>
+      
+        <!-- Show logout button and user info if the user is authenticated -->
+        <div *ngIf="auth.isAuthenticated$ | async">
+          <p>Welcome, {{ (auth.user$ | async)?.name }}</p>
+          <button (click)="logout()" class="btn btn-danger mt-3">Log Out</button>
+        </div>
+      </div>
+      
+</div>

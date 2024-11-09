@@ -1,0 +1,19 @@
+.custom-button
+{
+  background-color: #C2FE72;
+  border-radius: 1px;
+  border: none;
+  color:black;
+}
+.custom-button:disabled
+{
+  background-color: #528304;
+}
+
+.container
+{
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,4 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navmenu',
@@ -7,6 +9,8 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class NavMenuComponent implements OnInit {
   isSmallScreen: boolean = false;
+
+  constructor(public auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.checkScreenSize();
@@ -19,5 +23,10 @@ export class NavMenuComponent implements OnInit {
 
   private checkScreenSize(): void {
     this.isSmallScreen = window.innerWidth <= 576;
+  }
+
+  // Method to log out the user
+  logout(): void {
+    this.auth.logout({ logoutParams: { returnTo: window.location.origin } });
   }
 }
