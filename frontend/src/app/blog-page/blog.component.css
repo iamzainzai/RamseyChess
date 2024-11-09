@@ -149,11 +149,11 @@ p {
 }
 
 .blog-text {
-  background-color:#272870; /* Teal blue background */
+  background-color:#2c3622; /* Teal blue background */
   color: white;              /* White text for contrast */
   padding: 20px;             /* Add padding for spacing inside the element */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Subtle shadow for lift */
-  font-family: 'Courier New', Courier, monospace
+  font-family: 'Courier New', Courier, monospace;
 }
 
 h2
