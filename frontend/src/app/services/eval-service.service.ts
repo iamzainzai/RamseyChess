@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { NextMove } from 'src/models/next-move.model';
 
 interface ChessPieces {
   pawn  : number;
@@ -17,6 +18,7 @@ interface MatevalModel {
   blackPieces : ChessPieces;
   owner      : string | null;
 }
+
 
 
 @Injectable({
@@ -47,6 +49,26 @@ constructor(private http: HttpClient) {}
     this.currentDepth$.next(newDepth);
   }
 
+  requestMoveByStratId(strat_id: string): Promise<NextMove | {}> {
+    return new Promise((resolve, reject) => {
+      const payload = { strategy_id: strat_id };
+      this.http.post<NextMove>('/get_best_move_by_strategy_id', payload).subscribe(
+        (response: NextMove) => {
+          console.log('Response from server:', response);
+          if (response && response.best_move) {
+            this.bestMove$.next(response.best_move);
+            resolve({"best_move": response.best_move});
+          } else {
+            resolve({});
+          }
+        },
+        (error) => {
+          console.error('Error occurred:', error);
+          reject(error);
+        }
+      );
+    });
+  }
   // Method to send execution request
   sendExec(): Promise<{ best_move: string | null, best_move_readable: string | null } | null> {
     return new Promise((resolve, reject) => {
@@ -75,5 +97,7 @@ constructor(private http: HttpClient) {}
         }
       );
     });
+
+
   }
 }

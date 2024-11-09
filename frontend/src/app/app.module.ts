@@ -16,6 +16,7 @@ import { BlogComponent } from './blog-page/blog.component';
 import { NavMenuComponent } from './navmenu/navmenu.component';
 import { PlayPageComponent } from './play-page/play-page.component';
 import { PlayAiCardComponent } from './play-card-page/play-card.component';
+import { PlayBotsPageComponent } from './play-bots-page/play-bots-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { PlayAiCardComponent } from './play-card-page/play-card.component';
     BlogComponent,
     NavMenuComponent,
     PlayPageComponent,
-    PlayAiCardComponent
+    PlayAiCardComponent,
+    PlayBotsPageComponent
   ],
   imports: [
     HttpClientModule,
