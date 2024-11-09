@@ -13,6 +13,8 @@
   color: #ffffff;
   background-color: #4a4a4a;
   font-weight: bold;
+  overflow-x: hidden;
+  max-width: 60px;
 }
 
 /* Player Header */
@@ -26,14 +28,17 @@
 /* Input Cells */
 .input-cell {
   background-color: #4a4a4a; /* Matches the dark gray background */
+  max-width: 100px;
+  
 }
 
 /* Custom Input Styling */
 .custom-input {
   background-color: #f7f7d6;
   border: none;
-  border-radius: 3px;
+  border-radius: 2px;
   text-align: center;
+  min-width: 60px
 }
 
 .custom-input:focus {
