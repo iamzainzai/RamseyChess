@@ -1,74 +1,58 @@
-table{
-    margin: 0 auto;
+/* Remove table cell borders */
+.custom-table {
+  border-collapse: collapse;
 }
-.row {
-  border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+
+.custom-table td, .custom-table th {
+  border: none;
   padding: 10px;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Soft shadow for lifting effect */
-  transition: box-shadow 0.3s ease; /* Smooth transition on hover */
 }
-th, td {
-    width: 50%; /* Forces each column to take up half of the table width */
-    text-align: center;
-    vertical-align: top;
-  }
 
-  input[type="number"] {
-    width: 100%; /* Set consistent width for input fields */
-    max-width: 150px; /* Limit the maximum width to prevent it from getting too large */
-    box-sizing: border-box; /* Makes sure padding is included in the width */
-    padding: 8px; /* Adds padding inside input for better visual appearance */
-    border-radius: 1px;
-  }
+/* Piece Type Cells */
+.piece-type-cell {
+  color: #ffffff;
+  background-color: #4a4a4a;
+  font-weight: bold;
+}
 
-  .form-group {
-    display: flex; /* Use flexbox to align label and input */
-    justify-content: space-between; /* Spreads the label and input evenly */
-    align-items: center; /* Keeps both label and input aligned vertically */
-    gap: 10px; /* Adds spacing between label and input */
-  }
+/* Player Header */
+.player-header {
+  background-color: #C2FE72;
+  color: #4a4a4a;
+  padding: 10px;
+  border-radius: 0px;
+}
 
-  .submit-btn:hover {
-    background-color: #b0b0b0; /* Slightly darker gray for hover effect */
-  }
+/* Input Cells */
+.input-cell {
+  background-color: #4a4a4a; /* Matches the dark gray background */
+}
 
-  .submit-btn:active {
-    background-color: #a0a0a0; /* Darker shade when button is active/clicked */
-  }
+/* Custom Input Styling */
+.custom-input {
+  background-color: #f7f7d6;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+}
 
-  .submit-btn {
-    background-color: #d3d3d3; /* Light gray, similar to a chessboard color */
-    color: #000; /* Black text for good contrast */
-    border: none;
-    padding: 12px 24px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-    margin-top: 20px; /* Adds spacing above the button */
-    border-radius: 5px; /* Rounds the corners for a more modern look */
-  }
+.custom-input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #a6ff4d;
+}
 
-  .custom-button {
-    background-color: #282a71; /* Dark blue background */
-    color: whitesmoke;         /* White text */
-    border-radius: 8px;        /* Rounded corners */
-    padding: 10px 20px;        /* Increase padding for better appearance */
-    border: 2px solid  #160555;/* Solid border similar to row gradient */
-    transition: all 0.3s ease; /* Smooth transition for hover effect */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Subtle shadow */
-    margin: auto 10px;
-    width: 100%
-  }
-  
-  .custom-button:hover {
-    background-color: #160555; /* Slightly lighter blue on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
-  }
-  
-  .custom-button:disabled {
-    background-color: #999999; /* Gray background when disabled */
-    border: 2px solid #999999; /* Gray border when disabled */
-    cursor: not-allowed;       /* Show not-allowed cursor when disabled */
-    box-shadow: none;          /* Remove shadow when disabled */
-  }
+/* Button Styling */
+.btn-primary.custom-button {
+  background-color: #fdd835;
+  border: none;
+  color: #4a4a4a;
+  font-weight: bold;
+}
+
+.btn-primary.custom-button:hover {
+  background-color: #528304;
+}
+.empty-cell
+{
+  background-color:  #4a4a4a;
+}

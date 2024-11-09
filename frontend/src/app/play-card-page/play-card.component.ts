@@ -32,7 +32,7 @@ export class PlayAiCardComponent implements OnInit {
   {
     if (this.currentFen && this.cardId) 
     {
-      this.play_ai.getNextMoveByStratId(this.currentFen, this.cardId)
+      this.play_ai.getNextMoveByStratId(this.currentFen, this.cardId, 2)
         .then(nextMove => {
           console.log('Next move received:', nextMove);
         })
@@ -49,7 +49,7 @@ export class PlayAiCardComponent implements OnInit {
     const activeColor = fen.split(' ')[1]; 
     if (activeColor == 'b')
     {
-      this.play_ai.getNextMoveByStratId(fen, this.cardId).then( (res : NextMove | {}) =>
+      this.play_ai.getNextMoveByStratId(fen, this.cardId, 2).then( (res : NextMove | {}) =>
       {  
         console.log(res)
         if ('best_move' in res && res.best_move != "")

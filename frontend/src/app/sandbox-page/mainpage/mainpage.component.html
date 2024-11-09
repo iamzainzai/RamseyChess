@@ -2,29 +2,47 @@
 
 <div class="container game-wrapper mt-5">
   <div class="row" style="margin-top: 85px;">
-    <!-- Left side: Parameters, centered on small screens -->
-    <div class="col-12 col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-      <div style="text-align: center;">
-        <app-mat-eval [currentFen]="this.currentFen"></app-mat-eval>
-      </div>
+    <!-- Left side: Chessboard, takes the entire left side without a container -->
+    <div class="col-12 col-lg-6 order-1 order-lg-1 d-flex justify-content-center">
+      <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" 
+        [size]="boardSize"  
+        [darkTileColor]="'#779557'"
+        [lightTileColor]="'#ECECD0'"
+        [pieceIcons]="{
+          blackBishopUrl: 'assets/pieces/bb.svg',
+          blackKingUrl: 'assets/pieces/bk.svg',
+          blackKnightUrl: 'assets/pieces/bn.svg',
+          blackPawnUrl: 'assets/pieces/bp.svg',
+          blackQueenUrl: 'assets/pieces/bq.svg',
+          blackRookUrl: 'assets/pieces/br.svg',
+          whiteBishopUrl: 'assets/pieces/wb.svg',
+          whiteKingUrl: 'assets/pieces/wk.svg',
+          whiteKnightUrl: 'assets/pieces/wn.svg',
+          whitePawnUrl: 'assets/pieces/wp.svg',
+          whiteQueenUrl: 'assets/pieces/wq.svg',
+          whiteRookUrl: 'assets/pieces/wr.svg'
+        }"
+      ></ngx-chess-board>
+    </div>
+
+    <!-- Right side: Parameters, buttons, and current FEN -->
+    <div class="col-12 col-lg-6 order-2 order-lg-2 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+
+      <!-- Thinking Depth and Execution -->
       <div style="text-align: center;">
         <app-mini-max></app-mini-max>
       </div>
-    </div>
-
-    <!-- Right side: Chessboard, only on right side on desktop screens -->
-    <div class="col-12 col-lg-6 order-1 order-lg-2 d-flex justify-content-center">
-      <div class="boards-container" style="max-width: 500px;">
-        <span>Click on Evaluate to get the AI to make a move</span>
-        <ngx-chess-board #chessBoard (moveChange)="onMoveChange()" [size]="boardSize"></ngx-chess-board>
-        <div class="text-center mt-3">
-          <button class="custom-button reset-btn" (click)="reset()">Reset</button>
-        </div>
-        <div style="text-align: center; font-size: 12px;">
-          <p>{{ this.currentFen }}</p>
-        </div>
+      <!-- Evaluation Parameters -->
+      <div class="text-center mb-3">
+        <app-mat-eval [currentFen]="this.currentFen"></app-mat-eval>
       </div>
-    </div>
-  </div>
 
+      <!-- Current FEN display -->
+      <div class="text-center" style="font-size: 12px;">
+        <p>{{ this.currentFen }}</p>
+      </div>
+
+    </div>
+    
+  </div>
 </div>

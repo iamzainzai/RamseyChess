@@ -2,9 +2,10 @@ from flask import Flask, request, jsonify
 import chess
 from flasgger import Swagger
 from flask_cors import CORS
+
 from routes.public_routes.public_routes import public_routes
 
-
+from data_access.strategy_cards_manager import AiPremadeManager
 from data_access.material_manager import EvaluateMaterialManager
 from data_access.danger_manager import EvaluateDangerManager
 
@@ -169,37 +170,51 @@ def submit_exec():
        "material_score": matEval.calculate()
    })
 
-@app.route('/mixed_eval', methods=['POST'])
-def mixed_eval():
-   req                = request.get_json()
-   selected_evaluators = req.get("evaluators", None)
-   # This is a list of strategy types
-   # {material_evaluator : {"name" : "pawns", "w": 1} , "danger_evaluator" : {"name": "coward", "w": 1}}
-   fen   = req.get("fen", None)
-   depth = req.get("depth", 1)
+@app.route('/request_move_by_strategy', methods=['POST'])
+def request_move_by_strategy():
+  req         = request.get_json()
+  strategy_id = req["strategy_id"]
+  fen         = req["fen"]
+  depth       = req["depth"]
+  board = chess.Board(fen)
+  # Accesso a la BD 
+  ai_manager = AiPremadeManager()
+  ai_manager.loadById(strategy_id)
+  load_managers = ai_manager.getCurrent()["strategy_list"]
 
-   depth = min(depth, 4)
-   board = chess.Board(fen)
+  available_managers = {
+    "evaluate_material": EvaluateMaterialManager,
+    "evaluate_danger": EvaluateDangerManager
+  }
+  available_scorers = {
+     "evaluate_material": MaterialEvaluator,
+     "evaluate_danger": DangerEvaluator
+  }
+  loaded_evaluators = []
+  for strategy in load_managers:
+    collection   = strategy["collection"]
+    evaluator_id = strategy["strat_id"]
+    manager = available_managers[collection]()
 
-  # Accesso a la BD
-   em = EvaluateMaterialManager()
-   em.loadOne(selected_evaluators["material_evaluator"]["name"])
-   material_scoring = em.getCurrent()
-  # Accesso a BD para danger
-   ed = EvaluateDangerManager()
-   ed.loadOne(selected_evaluators["danger_evaluator"]["name"])
-   danger_scoring = ed.getCurrent()
+    # em = EvaluateMaterialManager()
+    # em.loadOne(eval_name)
+    # material_scoring = em.getCurrent()
+    # 
+    # matEval = MaterialEvaluator(eval_manager=material_scoring, board=board)
+    # matEval.set_board(board)
+    # minimax = Minimax(evaluator=[matEval], depth=depth)
 
-   matEval = MaterialEvaluator(eval_manager=material_scoring, board=board)
-   danEval = DangerEvaluator(eval_manager=danger_scoring, board=board)
-   print([matEval, danEval])
-  # Both matEval and danEval implement the .calculate() method
-   minimax = Minimax(evaluator=[matEval, danEval], depth=depth)
-   best_move = minimax.find_best_move(board)
-
-   return jsonify({
-       "best_move": board.san(best_move),
-       "evaluators_used": [str(matEval), str(danEval)]
+    manager.loadById(evaluator_id)
+    scoring_executor = available_scorers[collection](eval_manager=manager.getCurrent(), board=board)
+    
+    loaded_evaluators.append(scoring_executor)
+  
+  
+  minimax = Minimax(evaluator=loaded_evaluators,depth=depth)
+  best_move = minimax.find_best_move(board)
+  
+  return jsonify({
+    "best_move" : best_move.uci(),
    })
 
 if __name__ == '__main__':

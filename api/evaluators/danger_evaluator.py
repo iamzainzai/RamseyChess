@@ -27,10 +27,12 @@ class DangerEvaluator():
                     black_hanging_pieces += 1
 
         # Calculate the difference: positive if black has more hanging pieces, negative if white has more
-        hanging_difference = black_hanging_pieces - white_hanging_pieces
+        hanging_difference = (black_hanging_pieces * self.eval_manager["blackPieces"]["hangingPieces"] -
+                              white_hanging_pieces * self.eval_manager["whitePieces"]["hangingPieces"])
+
 
         # Apply the weight if there is a difference in hanging pieces
-        return hanging_difference * self.eval_manager["whitePieces"]["hangingPieces"]
+        return hanging_difference
             
     def _is_attacked(self, piece, square) -> int:
         """Checks if the given piece at the specified square is attacked."""

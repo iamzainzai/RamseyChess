@@ -23,24 +23,28 @@
           <div class="card h-100">
             <div class="card-body" >
                 <!-- First row: Name and Elo -->
-              <div class="row mb-2">
-                <div class="col-8">
-                  <h5 class="card-title">{{ card.name }}</h5>
+                <div class="mb-3">
+                  <div class="table-responsive">
+                    <table class="table table-bordered w-100" style="background-color: #e6f7e6;">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Name</th>
+                          <th>Elo</th>
+                          <th>Wins</th>
+                          <th>Losses</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{{ card.name }}</td>
+                          <td>{{ card.elo }}</td>
+                          <td>{{ card.wins }}</td>
+                          <td>{{ card.losses }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-                <div class="col-4 text-right">
-                  <p class="card-text"><strong>Elo:</strong> {{ card.elo }}</p>
-                </div>
-              </div>
-      
-                <!-- Second row: Wins and Losses in separate columns -->
-              <div class="row">
-                <div class="col-6">
-                  <p><strong>Wins:</strong> {{ card.wins }}</p>
-                </div>
-                <div class="col-6 text-right">
-                  <p><strong>Losses:</strong> {{ card.losses }}</p>
-                </div>
-              </div>
 
               <div *ngIf="card?.strategy_details">
                 <div class="row">
