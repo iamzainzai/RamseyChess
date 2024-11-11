@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService, User } from '@auth0/auth0-angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,11 +9,16 @@ import { Router } from '@angular/router';
 })
 export class NavMenuComponent implements OnInit {
   isSmallScreen: boolean = false;
+  userData : User | null | undefined = null;
 
   constructor(public auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.checkScreenSize();
+    this.auth.user$.subscribe( profile => {
+      this.userData = profile
+      console.log(this.userData)
+    })
   }
 
   @HostListener('window:resize', ['$event'])
@@ -29,4 +34,7 @@ export class NavMenuComponent implements OnInit {
   logout(): void {
     this.auth.logout({ logoutParams: { returnTo: window.location.origin } });
   }
+
+
+
 }
