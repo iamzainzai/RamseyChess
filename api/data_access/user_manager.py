@@ -21,11 +21,14 @@ class UserProfileManager:
         self.users = db.get_collection('user_profiles')
         self.current_user: Optional[UserProfileDoc] = None
 
-    def load_one_by_sub(self, sub: str):
+    def load_one_by_sub(self, sub: str) -> bool:
         """Load a single user profile by the unique Auth0 sub identifier."""
         user_doc = self.users.find_one({"sub": sub})
         if user_doc:
             self.current_user = UserProfileDoc(**user_doc)
+            return True
+        else:
+            return False
 
     def load_by_id(self, user_id: str):
         """Load a single user profile by MongoDB ObjectId."""
@@ -42,10 +45,13 @@ class UserProfileManager:
         self.current_users_collection = [UserProfileDoc(**doc) for doc in self.users.find()]
         return json.loads(dumps([asdict(user) for user in self.current_users_collection]))
 
-    def add_user(self, user_data: dict):
+    def add_user(self, user_data: UserProfileDoc) -> bool:
         """Add a new user profile to the collection."""
-        user = UserProfileDoc(**user_data)
-        self.users.insert_one(asdict(user))
+        user = UserProfileDoc(**asdict(user_data))
+        if self.users.insert_one(asdict(user)):
+            return True
+        else:
+            return False
 
     def update_user_elo(self, sub: str, new_elo: int):
         """Update the ELO score for a user with the given Auth0 sub."""

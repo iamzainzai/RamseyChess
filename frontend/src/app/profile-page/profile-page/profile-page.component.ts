@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, User } from '@auth0/auth0-angular';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { switchMap, filter } from 'rxjs/operators';
 
 import { UserProfile } from 'src/models/user-profile.model';
@@ -19,8 +19,14 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.userProfileData$ = this.user$.pipe(
-      filter((user): user is User => user != null), 
-      switchMap(user => this.http.post<UserProfile>('/api/get_player_data', { sub: user.sub }))
+      filter((user): user is User => user != null),
+      switchMap(user => 
+        this.http.post<UserProfile>('/api/get_player_data', { 
+          sub: user.sub, 
+          nickname: user.nickname, 
+          username: user.name
+        })
+      )
     );
   }
 }
