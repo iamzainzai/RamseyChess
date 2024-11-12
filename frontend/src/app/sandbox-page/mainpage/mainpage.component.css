@@ -56,12 +56,18 @@
   flex-wrap: wrap; /* Allow items to wrap for smaller screens */
   height: fit-content;
 }
-
+.game-wrapper {
+  margin-top: 100px !important;
+}
 /* Add media queries for different screen sizes to make the component more responsive */
 @media (max-width: 768px) {
   .boards-container {
     flex-direction: column; /* Stack items vertically on smaller screens */
     padding: 1rem;
+  }
+
+  .game-wrapper {
+    margin-top: 20px !important;
   }
 
   .new-game-button {
