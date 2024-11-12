@@ -9,16 +9,20 @@ import { Router } from '@angular/router';
 })
 export class NavMenuComponent implements OnInit {
   isSmallScreen: boolean = false;
-  userData : User | null | undefined = null;
+  menuOpen: boolean = false;
+  userData: User | null | undefined = null;
 
   constructor(public auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.checkScreenSize();
-    this.auth.user$.subscribe( profile => {
-      this.userData = profile
-      console.log(this.userData)
-    })
+    this.auth.user$.subscribe(profile => {
+      this.userData = profile;
+    });
+  }
+
+  toggleMenu(): void {
+    this.menuOpen = !this.menuOpen;
   }
 
   @HostListener('window:resize', ['$event'])
@@ -27,14 +31,13 @@ export class NavMenuComponent implements OnInit {
   }
 
   private checkScreenSize(): void {
-    this.isSmallScreen = window.innerWidth <= 576;
+    this.isSmallScreen = window.innerWidth <= 768;
+    if (!this.isSmallScreen) {
+      this.menuOpen = false; // Reset menuOpen on larger screens
+    }
   }
 
-  // Method to log out the user
   logout(): void {
     this.auth.logout({ logoutParams: { returnTo: window.location.origin } });
   }
-
-
-
 }
