@@ -4,7 +4,7 @@ import { NgxChessBoardComponent } from 'ngx-chess-board';
 import { MatevalComponent } from '../mateval/mateval.component';
 import { MinimaxComponent } from '../minimax/minimax.component';
 import { HttpClient } from '@angular/common/http';
-import { EvalService } from 'src/app/services/eval-service.service';
+import { EvalService } from 'src/services/eval-service.service';
 
 @Component({
   selector: 'app-mainpage',

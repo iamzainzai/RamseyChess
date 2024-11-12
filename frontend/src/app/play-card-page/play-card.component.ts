@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, HostListener, ChangeDetectorRef } from '@angular/core';
 import { StrategyCardData, StrategyDetailResponse } from 'src/models/start-card.model';
-import { PlayAiService } from '../services/play-ai.service';
+import { PlayAiService } from '../../services/play-ai.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxChessBoardComponent } from 'ngx-chess-board';
 import { NextMove } from 'src/models/next-move.model';

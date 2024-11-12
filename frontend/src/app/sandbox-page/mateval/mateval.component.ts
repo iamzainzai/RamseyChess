@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EvalService } from '../../services/eval-service.service';
+import { EvalService } from '../../../services/eval-service.service';
 
 interface ChessPieces {
   pawn  : number;

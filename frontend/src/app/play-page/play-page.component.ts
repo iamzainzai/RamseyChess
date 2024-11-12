@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StrategyCardData, StrategyDetailResponse } from 'src/models/start-card.model';
-import { PlayAiService } from '../services/play-ai.service';
+import { PlayAiService } from '../../services/play-ai.service';
 
 @Component({
   selector: 'app-play-page',

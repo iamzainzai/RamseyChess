@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EvalService } from 'src/app/services/eval-service.service';
+import { EvalService } from 'src/services/eval-service.service';
 
 @Component({
   selector: 'app-mini-max',

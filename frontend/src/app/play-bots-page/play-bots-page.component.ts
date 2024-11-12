@@ -2,8 +2,8 @@ import { Component, ElementRef, ViewChild, AfterViewInit, HostListener, ChangeDe
 import { Router } from '@angular/router';
 import { NgxChessBoardComponent } from 'ngx-chess-board';
 import { HttpClient } from '@angular/common/http';
-import { PlayAiService } from '../services/play-ai.service';
-import { EvalService } from '../services/eval-service.service';
+import { PlayAiService } from '../../services/play-ai.service';
+import { EvalService } from '../../services/eval-service.service';
 import { NextMove } from 'src/models/next-move.model';
 import { StrategyCardData, StrategyDetailResponse } from 'src/models/start-card.model';
 
