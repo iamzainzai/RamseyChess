@@ -57,3 +57,21 @@
     color: #8b7e66; /* Placeholder color matching dashed border */
     opacity: 0.8;
 }
+
+.piece-container input 
+{
+    margin-top: 10px;
+    max-width: 220px;
+}
+
+.disclaimer-box {
+    border: 2px solid #ff9800;
+    background-color: #fff3e0;
+    padding: 15px;
+    border-radius: 3px;
+    font-size: 1.1em;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #092810;
+}
