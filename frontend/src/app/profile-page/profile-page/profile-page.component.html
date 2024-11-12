@@ -31,11 +31,15 @@
                     <tr>
                         <td>Strategies</td>
                         <td>
-                            <ul>
+                            <ul *ngIf="userProfileData.strategies.length > 0; else noStrategies">
                                 <li *ngFor="let strategy of userProfileData.strategies">
                                     {{ strategy }}
                                 </li>
                             </ul>
+                            
+                            <ng-template #noStrategies>
+                                <button [routerLink]="['/build-strategy']">Create your first strategy</button>
+                            </ng-template>
                         </td>
                     </tr>
                 </tbody>

@@ -8,6 +8,7 @@ import { PlayBotsPageComponent } from './play-bots-page/play-bots-page.component
 import { SignInPageComponent } from './sign-in-page/sign-in-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page/profile-page.component';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { BuildStrategyPageComponent } from './build-strategy-page/build-strategy-page/build-strategy-page.component';
 
 const routerOptions: ExtraOptions = {
   anchorScrolling: 'enabled', 
@@ -22,8 +23,8 @@ const routes: Routes = [
   { path: 'cards/:id', component: PlayAiCardComponent },
   { path: 'bot-vs-bot', component: PlayBotsPageComponent},
   { path: 'sign-in', component: SignInPageComponent},
-  { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]}
-
+  { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
+  { path: 'build-strategy', component: BuildStrategyPageComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

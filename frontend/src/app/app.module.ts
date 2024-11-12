@@ -17,7 +17,8 @@ import { PlayPageComponent } from './play-page/play-page.component';
 import { PlayAiCardComponent } from './play-card-page/play-card.component';
 import { PlayBotsPageComponent } from './play-bots-page/play-bots-page.component';
 import { SignInPageComponent } from './sign-in-page/sign-in-page.component';
-import { ProfilePageComponent } from './profile-page/profile-page/profile-page.component'
+import { ProfilePageComponent } from './profile-page/profile-page/profile-page.component';
+import { BuildStrategyPageComponent } from './build-strategy-page/build-strategy-page/build-strategy-page.component'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProfilePageComponent } from './profile-page/profile-page/profile-page.c
     PlayAiCardComponent,
     PlayBotsPageComponent,
     SignInPageComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    BuildStrategyPageComponent
   ],
   imports: [
     BrowserModule,
