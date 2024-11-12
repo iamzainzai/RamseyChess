@@ -75,3 +75,9 @@
     text-align: center;
     color: #092810;
 }
+
+@media (max-width: 768px) { /* Adjust the width as needed */
+    .piece-value-input::placeholder {
+        color: transparent;
+    }
+}
