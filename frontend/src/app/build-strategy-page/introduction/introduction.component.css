@@ -1,0 +1,35 @@
+.wizard-intro 
+{
+    font-size       : 1.1em;
+    line-height     : 1.6em;
+    color           : #f0f0f0;                         /* Light text color */
+    background-color: #333;                            /* Dark background */
+    padding         : 20px;
+    border-radius   : 4px;
+    box-shadow      : 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-width       : 820px;
+    margin          : 0 auto;
+    text-align      : left;
+}
+
+.wizard-intro strong 
+{
+    color: #b6ff63; /* Bright green for emphasis */
+}
+
+.wizard-intro em 
+{
+    color: #f8d210; /* Soft yellow for a different emphasis */
+    font-style: italic;
+}
+
+.wizard-intro .emoji 
+{
+    font-size     : 1.4em;
+    vertical-align: middle;
+}
+
+.wizard-intro br 
+{
+    margin-bottom: 10px;
+}

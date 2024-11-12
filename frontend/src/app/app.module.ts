@@ -18,7 +18,11 @@ import { PlayAiCardComponent } from './play-card-page/play-card.component';
 import { PlayBotsPageComponent } from './play-bots-page/play-bots-page.component';
 import { SignInPageComponent } from './sign-in-page/sign-in-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page/profile-page.component';
-import { BuildStrategyPageComponent } from './build-strategy-page/build-strategy-page/build-strategy-page.component'
+import { BuildStrategyPageComponent } from './build-strategy-page/build-strategy-page/build-strategy-page.component';
+import { IntroductionComponent } from './build-strategy-page/introduction/introduction.component';
+import { MaterialFormComponent } from './build-strategy-page/material-form/material-form.component';
+import { DangerFormComponent } from './build-strategy-page/danger-form/danger-form.component';
+import { StrategyOverviewComponent } from './build-strategy-page/strategy-overview/strategy-overview.component'
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { BuildStrategyPageComponent } from './build-strategy-page/build-strategy
     PlayBotsPageComponent,
     SignInPageComponent,
     ProfilePageComponent,
-    BuildStrategyPageComponent
+    BuildStrategyPageComponent,
+    IntroductionComponent,
+    MaterialFormComponent,
+    DangerFormComponent,
+    StrategyOverviewComponent
   ],
   imports: [
     BrowserModule,

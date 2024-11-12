@@ -9,8 +9,48 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BuildStrategyPageComponent {
   user$ = this.auth.user$;
+  fade_animation_time : number = 400;
+  fadeClass: string = 'fade-in';
+
+  currentStep: number = 0;
+
+  steps = 
+  [
+    { component: 'app-introduction', title: 'Introduction' },
+    { component: 'app-material-form', title: 'Material Form' },
+    { component: 'app-danger-form', title: 'Danger Form' },
+    { component: 'app-strategy-overview', title: 'Strategy Overview' }
+  ];
+
+  nextStep() 
+  {
+    if (this.currentStep < this.steps.length - 1) 
+    {
+        this.triggerFadeOut(() => {
+        this.currentStep++;
+        this.fadeClass = 'fade-in';
+      });
+    }
+  }
+
+  previousStep() 
+  {
+    if (this.currentStep > 0) 
+    {
+      this.triggerFadeOut(() => {
+        this.currentStep--;
+        this.fadeClass = 'fade-in';
+      });
+    }
+  }
 
   constructor(public auth: AuthService, private http: HttpClient) {}
 
   ngOnInit(): void {}
+
+  private triggerFadeOut(callback: () => void) 
+  {
+    this.fadeClass = 'fade-out';
+    setTimeout(callback, this.fade_animation_time); // Wait for the fade-out animation to complete
+  }
 }

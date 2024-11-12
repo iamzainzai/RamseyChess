@@ -1,0 +1,129 @@
+/* Container and Card Styling */
+.carousel-container 
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel-card 
+{
+  width: 80%;
+  padding: 20px;
+  background-color: #444; /* Slightly lighter dark for card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: 20px;
+  border: 1px solid #555; /* Border matching dark theme */
+}
+
+/* Title Styling */
+.carousel-card h3 
+{
+  color: #dcdcdc; /* Light grey for title */
+  margin-bottom: 10px;
+}
+
+/* Navigation Controls */
+.carousel-controls 
+{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.arrow-btn 
+{
+  font-size: 18px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background-color: #5c8a3d; /* Dark green for buttons */
+  color: #f0f0f0; /* Light text color */
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.arrow-btn:hover 
+{
+  background-color: #729f44; /* Slightly lighter green on hover */
+}
+
+.arrow-btn:disabled 
+{
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: #e9abab; /* Disabled color matching card */
+}
+
+/* Responsive Table Styling */
+table 
+{
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+th, td 
+{
+  padding: 8px;
+  border: 1px solid #555; /* Table border color */
+  text-align: left;
+  color: #f0f0f0;
+}
+
+th 
+{
+  background-color: #333; /* Dark header background */
+  font-weight: bold;
+}
+
+td 
+{
+  background-color: #444; /* Cell background */
+}
+
+button.create-strategy-btn 
+{
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #b6ff63; /* Bright green for primary action */
+  color: #333; /* Dark text for contrast */
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.create-strategy-btn:hover 
+{
+  background-color: #a5e658; /* Slightly darker green on hover */
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Classes to trigger animations */
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.fade-out {
+  animation: fadeOut 0.4s ease-in-out;
+}
