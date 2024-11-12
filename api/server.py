@@ -4,6 +4,7 @@ from flasgger import Swagger
 from flask_cors import CORS
 
 from routes.public_routes.public_routes import public_routes
+from routes.profile_routes.profile_routes import profile_routes
 
 from data_access.strategy_cards_manager import AiPremadeManager
 from data_access.material_manager import EvaluateMaterialManager
@@ -23,6 +24,7 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 swagger = Swagger(app)
 
 app.register_blueprint(public_routes)
+app.register_blueprint(profile_routes)
 
 
 @app.route('/gen_evaluate', methods=['POST'])

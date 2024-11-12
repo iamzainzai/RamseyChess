@@ -17,6 +17,7 @@ import { PlayPageComponent } from './play-page/play-page.component';
 import { PlayAiCardComponent } from './play-card-page/play-card.component';
 import { PlayBotsPageComponent } from './play-bots-page/play-bots-page.component';
 import { SignInPageComponent } from './sign-in-page/sign-in-page.component';
+import { ProfilePageComponent } from './profile-page/profile-page/profile-page.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SignInPageComponent } from './sign-in-page/sign-in-page.component';
     PlayPageComponent,
     PlayAiCardComponent,
     PlayBotsPageComponent,
-    SignInPageComponent
+    SignInPageComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,

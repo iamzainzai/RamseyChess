@@ -14,13 +14,13 @@ class Strategy:
 
 @dataclass
 class AiPremadeStratDoc:
-    _id: ObjectId
-    name: str
+    _id          : ObjectId
+    name         : str
     strategy_list: List[Strategy]
-    wins: int
-    losses: int
-    elo: int
-    owner: str
+    wins         : int
+    losses       : int
+    elo          : int
+    owner        : str
 
 
 class AiPremadeManager():

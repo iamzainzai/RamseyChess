@@ -27,9 +27,9 @@
     <li class="nav-item" *ngIf="!(auth.isAuthenticated$ | async)">
       <a [routerLink]="['/sign-in']" class="nav-link">Sign In / Register</a>
     </li>
-    <li class="nav-item" *ngIf="auth.isAuthenticated$ | async">
-      <a (click)="logout()" class="nav-link" style="cursor: pointer;">  {{ userData?.email ?? 'No email' }}
-      </a>
+    <li class="nav-item d-flex align-items-center" *ngIf="auth.isAuthenticated$ | async">
+      <a (click)="logout()" class="nav-link" style="cursor: pointer; color: red; margin-right: 8px;">X</a>
+      <a [routerLink]="['/profile']" class="nav-link">{{ userData?.email ?? 'No email' }}</a>
     </li>
   </ul>
-</div>
+  
