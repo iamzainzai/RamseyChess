@@ -59,6 +59,7 @@
 .game-wrapper {
   margin-top: 100px !important;
 }
+
 /* Add media queries for different screen sizes to make the component more responsive */
 @media (max-width: 768px) {
   .boards-container {

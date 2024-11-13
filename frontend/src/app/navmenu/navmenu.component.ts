@@ -37,6 +37,7 @@ export class NavMenuComponent implements OnInit {
     }
   }
 
+  
   logout(): void {
     this.auth.logout({ logoutParams: { returnTo: window.location.origin } });
   }
